@@ -6,5 +6,5 @@ import '../../../core/services/providers.dart';
 
 final createTicketProvider =
     StateNotifierProvider<TicketNotifier, CreateTicketForm>(
-  (ref) => TicketNotifier(ref.watch(ticketUseCaseProvider)),
-);
+      (ref) => TicketNotifier(ref.watch(ticketUseCaseProvider)),
+    );

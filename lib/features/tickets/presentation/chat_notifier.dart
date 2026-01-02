@@ -5,14 +5,13 @@ import '../../../core/constants/mock_messages.dart';
 
 class ChatNotifier extends StateNotifier<List<ChatMessage>> {
   ChatNotifier() : super([]) {
-    state = MOCK_MESSAGES
+    state = mockMessages
         .map(
           (m) => ChatMessage(
             id: DateTime.now().toString(),
             text: m['text'],
             sender: m['sender'],
-            timestamp:
-                DateTime.now().subtract(const Duration(minutes: 10)),
+            timestamp: DateTime.now().subtract(const Duration(minutes: 10)),
           ),
         )
         .toList();
@@ -31,7 +30,7 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
     Future.delayed(const Duration(seconds: 2), () {
       final reply = ChatMessage(
         id: DateTime.now().toString(),
-        text: 'ÔßÑÇð¡ ÓäÞæã ÈãÊÇÈÚÉ ÇáÃãÑ.',
+        text: 'Ø´ÙƒØ±Ø§Ù‹ØŒ Ø³Ù†Ù‚ÙˆÙ… Ø¨Ù…ØªØ§Ø¨Ø¹Ø© Ø§Ù„Ø£Ù…Ø±.',
         sender: 'supervisor',
         timestamp: DateTime.now(),
       );

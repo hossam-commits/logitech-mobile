@@ -24,29 +24,25 @@ class _MainDashboardState extends State<MainDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF1F5F9),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: _screens),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
-        onDestinationSelected: (idx) =>
-            setState(() => _selectedIndex = idx),
+        onDestinationSelected: (idx) => setState(() => _selectedIndex = idx),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
             selectedIcon: Icon(Icons.home),
-            label: 'ÇáÑÆíÓíÉ',
+            label: 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©',
           ),
           NavigationDestination(
             icon: Icon(Icons.confirmation_number_outlined),
             selectedIcon: Icon(Icons.confirmation_number),
-            label: 'ÇáÊÐÇßÑ',
+            label: 'Ø§Ù„ØªØ°Ø§ÙƒØ±',
           ),
           NavigationDestination(
             icon: Icon(Icons.person_outline),
             selectedIcon: Icon(Icons.person),
-            label: 'ÍÓÇÈí',
+            label: 'Ø­Ø³Ø§Ø¨ÙŠ',
           ),
         ],
       ),

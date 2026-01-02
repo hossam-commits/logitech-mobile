@@ -7,18 +7,26 @@ import 'submit_vehicle_checkin_usecase.dart';
 import 'ticket_manager_usecase.dart';
 import 'daily_preparation_usecase.dart';
 import 'accident_reporting_usecase.dart';
+import '../../features/auth/data/repositories/auth_repository.dart';
+import '../../features/auth/data/repositories/auth_repository_impl.dart';
 
-final mediaServiceProvider =
-    Provider<IMediaService>((ref) => MediaServiceImpl());
+final mediaServiceProvider = Provider<IMediaService>(
+  (ref) => MediaServiceImpl(),
+);
 
-final locationServiceProvider =
-    Provider<ILocationService>((ref) => LocationServiceImpl());
+final locationServiceProvider = Provider<ILocationService>(
+  (ref) => LocationServiceImpl(),
+);
 
-final userRepoProvider =
-    Provider<IUserRepository>((ref) => UserRepositoryImpl());
+final userRepoProvider = Provider<IUserRepository>(
+  (ref) => UserRepositoryImpl(),
+);
 
-final checkInUseCaseProvider =
-    Provider<SubmitVehicleCheckInUseCase>((ref) {
+final authRepositoryProvider = Provider<IAuthRepository>((ref) {
+  return FirebaseAuthRepository();
+});
+
+final checkInUseCaseProvider = Provider<SubmitVehicleCheckInUseCase>((ref) {
   return SubmitVehicleCheckInUseCase(ref.watch(mediaServiceProvider));
 });
 
@@ -26,8 +34,7 @@ final ticketUseCaseProvider = Provider<TicketManagerUseCase>((ref) {
   return TicketManagerUseCase(ref.watch(mediaServiceProvider));
 });
 
-final preparationUseCaseProvider =
-    Provider<DailyPreparationUseCase>((ref) {
+final preparationUseCaseProvider = Provider<DailyPreparationUseCase>((ref) {
   return DailyPreparationUseCase(
     ref.watch(locationServiceProvider),
     ref.watch(userRepoProvider),
@@ -35,8 +42,7 @@ final preparationUseCaseProvider =
   );
 });
 
-final accidentUseCaseProvider =
-    Provider<AccidentReportingUseCase>((ref) {
+final accidentUseCaseProvider = Provider<AccidentReportingUseCase>((ref) {
   return AccidentReportingUseCase(
     ref.watch(mediaServiceProvider),
     ref.watch(locationServiceProvider),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
-import '../../../core/constants/mock_tickets_data.dart';
+import 'package:logitech_mobile/core/constants/mock_tickets_data.dart';
 import '../../../operations/presentation/screens/accident_wizard_screen.dart';
 import '../../../fleet/presentation/vehicle_checkin_screen.dart';
 import '../../../operations/presentation/screens/daily_preparation_screen.dart';
@@ -12,12 +12,10 @@ class DashboardHomeContent extends StatefulWidget {
   const DashboardHomeContent({super.key});
 
   @override
-  State<DashboardHomeContent> createState() =>
-      _DashboardHomeContentState();
+  State<DashboardHomeContent> createState() => _DashboardHomeContentState();
 }
 
-class _DashboardHomeContentState
-    extends State<DashboardHomeContent> {
+class _DashboardHomeContentState extends State<DashboardHomeContent> {
   bool _isOnline = false;
 
   @override
@@ -29,7 +27,7 @@ class _DashboardHomeContentState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              '„—Õ»«° «·”«∆ﬁ',
+              'ŸÖÿ±ÿ≠ÿ®ÿßŸãÿå ÿßŸÑÿ≥ÿßÿ¶ŸÇ',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -37,21 +35,16 @@ class _DashboardHomeContentState
               ),
             ),
             Text(
-              intl.DateFormat('EEEE, d MMMM', 'ar_SA')
-                  .format(DateTime.now()),
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
-              ),
+              intl.DateFormat('EEEE, d MMMM', 'ar_SA').format(DateTime.now()),
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ],
         ),
         actions: [
           Switch(
             value: _isOnline,
-            onChanged: (val) =>
-                setState(() => _isOnline = val),
-            activeColor: Colors.green,
+            onChanged: (val) => setState(() => _isOnline = val),
+            activeThumbColor: Colors.green,
           ),
           const SizedBox(width: 16),
         ],
@@ -65,9 +58,7 @@ class _DashboardHomeContentState
             FilledButton.icon(
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (c) => const AccidentWizardScreen(),
-                ),
+                MaterialPageRoute(builder: (c) => const AccidentWizardScreen()),
               ),
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.red.shade50,
@@ -80,11 +71,8 @@ class _DashboardHomeContentState
               ),
               icon: const Icon(Icons.warning_amber_rounded),
               label: const Text(
-                '≈»·«€ ⁄‰ Õ«œÀ ÿ«—∆',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+                'ÿ•ÿ®ŸÑÿßÿ∫ ÿπŸÜ ÿ≠ÿßÿØÿ´ ÿ∑ÿßÿ±ÿ¶',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
             const SizedBox(height: 24),
@@ -98,43 +86,40 @@ class _DashboardHomeContentState
               children: [
                 _buildActionCard(
                   icon: Icons.directions_car_filled_outlined,
-                  label: '«” ·«„ „—ﬂ»…',
+                  label: 'ÿßÿ≥ÿ™ŸÑÿßŸÖ ŸÖÿ±ŸÉÿ®ÿ©',
                   color: Colors.blue,
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (c) =>
-                          const VehicleCheckInScreen(),
+                      builder: (c) => const VehicleCheckInScreen(),
                     ),
                   ),
                 ),
                 _buildActionCard(
                   icon: Icons.assignment_outlined,
-                  label: '«· Õ÷Ì— «·ÌÊ„Ì',
+                  label: 'ÿßŸÑÿ™ÿ≠ÿ∂Ÿäÿ± ÿßŸÑŸäŸàŸÖŸä',
                   color: Colors.orange,
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (c) =>
-                          const DailyPreparationScreen(),
+                      builder: (c) => const DailyPreparationScreen(),
                     ),
                   ),
                 ),
                 _buildActionCard(
                   icon: Icons.confirmation_number_outlined,
-                  label: ' –ﬂ—… ÃœÌœ…',
+                  label: 'ÿ™ÿ∞ŸÉÿ±ÿ© ÿ¨ÿØŸäÿØÿ©',
                   color: Colors.purple,
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (c) =>
-                          const CreateTicketScreen(),
+                      builder: (c) => const CreateTicketScreen(),
                     ),
                   ),
                 ),
                 _buildActionCard(
                   icon: Icons.history,
-                  label: '”Ã·Ì',
+                  label: 'ÿ≥ÿ¨ŸÑŸä',
                   color: Colors.teal,
                   onTap: () {},
                 ),
@@ -148,42 +133,39 @@ class _DashboardHomeContentState
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '¬Œ— «· –«ﬂ—',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    'ÿ¢ÿÆÿ± ÿßŸÑÿ™ÿ∞ÿßŸÉÿ±',
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
-                  ...MOCK_TICKETS_DATA.take(2).map(
-                    (t) => Column(
-                      children: [
-                        InkWell(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (c) =>
-                                  TicketDetailsScreen(
-                                ticket: t,
+                  ...mockTicketsData
+                      .take(2)
+                      .map(
+                        (t) => Column(
+                          children: [
+                            InkWell(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (c) =>
+                                      TicketDetailsScreen(ticket: t),
+                                ),
+                              ),
+                              child: _buildTicketItem(
+                                t['id'],
+                                t['title'],
+                                t['status'],
+                                t['status'] == 'open'
+                                    ? Colors.orange
+                                    : Colors.green,
                               ),
                             ),
-                          ),
-                          child: _buildTicketItem(
-                            t['id'],
-                            t['title'],
-                            t['status'],
-                            t['status'] == 'open'
-                                ? Colors.orange
-                                : Colors.green,
-                          ),
+                            const Divider(),
+                          ],
                         ),
-                        const Divider(),
-                      ],
-                    ),
-                  ),
+                      ),
                 ],
               ),
             ),
@@ -199,33 +181,23 @@ class _DashboardHomeContentState
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: _isOnline
-              ? [
-                  const Color(0xFF2563EB),
-                  const Color(0xFF1D4ED8),
-                ]
-              : [
-                  Colors.grey,
-                  Colors.grey.shade700,
-                ],
+              ? [const Color(0xFF2563EB), const Color(0xFF1D4ED8)]
+              : [Colors.grey, Colors.grey.shade700],
         ),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
-        mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            _isOnline ? '√‰  „ ’· «·¬‰' : '√‰  €Ì— „ ’·',
+            _isOnline ? 'ÿ£ŸÜÿ™ ŸÖÿ™ÿµŸÑ ÿßŸÑÿ¢ŸÜ' : 'ÿ£ŸÜÿ™ ÿ∫Ÿäÿ± ŸÖÿ™ÿµŸÑ',
             style: const TextStyle(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Icon(
-            _isOnline ? Icons.wifi : Icons.wifi_off,
-            color: Colors.white,
-          ),
+          Icon(_isOnline ? Icons.wifi : Icons.wifi_off, color: Colors.white),
         ],
       ),
     );
@@ -245,21 +217,11 @@ class _DashboardHomeContentState
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              color: color,
-              size: 28,
-            ),
+            Icon(icon, color: color, size: 28),
             const SizedBox(height: 12),
-            Text(
-              label,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -289,36 +251,24 @@ class _DashboardHomeContentState
         const SizedBox(width: 12),
         Expanded(
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
               Text(
                 id,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                ),
+                style: const TextStyle(color: Colors.grey, fontSize: 12),
               ),
             ],
           ),
         ),
         Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 6,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: statusColor.withOpacity(0.1),
+            color: statusColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
-            status == 'open' ? '„› ÊÕ…' : '„€·ﬁ…',
+            status == 'open' ? 'ŸÖŸÅÿ™Ÿàÿ≠ÿ©' : 'ŸÖÿ∫ŸÑŸÇÿ©',
             style: TextStyle(
               color: statusColor,
               fontSize: 12,

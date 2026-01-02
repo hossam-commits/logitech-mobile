@@ -29,7 +29,9 @@ class PreparationNotifier extends StateNotifier<DailyPreparationForm> {
 
   Future<String?> submit(String odometerInput) async {
     final odo = int.tryParse(odometerInput);
-    if (odo == null) return 'الرجاء إدخال قراءة عداد صحيحة';
+    if (odo == null) {
+      return 'الرجاء إدخال قراءة عداد صحيحة';
+    }
 
     state = state.copyWith(currentOdometer: odo);
 

@@ -10,12 +10,10 @@ class CreateTicketScreen extends ConsumerStatefulWidget {
   const CreateTicketScreen({super.key});
 
   @override
-  ConsumerState<CreateTicketScreen> createState() =>
-      _CreateTicketScreenState();
+  ConsumerState<CreateTicketScreen> createState() => _CreateTicketScreenState();
 }
 
-class _CreateTicketScreenState
-    extends ConsumerState<CreateTicketScreen> {
+class _CreateTicketScreenState extends ConsumerState<CreateTicketScreen> {
   bool _isSubmitting = false;
 
   @override
@@ -25,14 +23,14 @@ class _CreateTicketScreenState
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
-      appBar: AppBar(title: const Text('ÊÐßÑÉ ÌÏíÏÉ')),
+      appBar: AppBar(title: const Text('ØªØ°ÙƒØ±Ø© Ø¬Ø¯ÙŠØ¯Ø©')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'äæÚ ÇáÊÐßÑÉ',
+              'Ù†ÙˆØ¹ Ø§Ù„ØªØ°ÙƒØ±Ø©',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 8),
@@ -45,7 +43,7 @@ class _CreateTicketScreenState
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<TicketType>(
                   value: form.type,
-                  hint: const Text('ÇÎÊÑ äæÚ ÇáÊÐßÑÉ'),
+                  hint: const Text('Ø§Ø®ØªØ± Ù†ÙˆØ¹ Ø§Ù„ØªØ°ÙƒØ±Ø©'),
                   isExpanded: true,
                   items: const [
                     DropdownMenuItem(
@@ -54,7 +52,7 @@ class _CreateTicketScreenState
                         children: [
                           Icon(Icons.build, color: Colors.orange),
                           SizedBox(width: 8),
-                          Text('ÕíÇäÉ'),
+                          Text('ØµÙŠØ§Ù†Ø©'),
                         ],
                       ),
                     ),
@@ -62,10 +60,9 @@ class _CreateTicketScreenState
                       value: TicketType.fuel,
                       child: Row(
                         children: [
-                          Icon(Icons.local_gas_station,
-                              color: Colors.blue),
+                          Icon(Icons.local_gas_station, color: Colors.blue),
                           SizedBox(width: 8),
-                          Text('æÞæÏ'),
+                          Text('ÙˆÙ‚ÙˆØ¯'),
                         ],
                       ),
                     ),
@@ -73,10 +70,9 @@ class _CreateTicketScreenState
                       value: TicketType.carWash,
                       child: Row(
                         children: [
-                          Icon(Icons.local_car_wash,
-                              color: Colors.cyan),
+                          Icon(Icons.local_car_wash, color: Colors.cyan),
                           SizedBox(width: 8),
-                          Text('ÛÓíá'),
+                          Text('ØºØ³ÙŠÙ„'),
                         ],
                       ),
                     ),
@@ -86,7 +82,7 @@ class _CreateTicketScreenState
                         children: [
                           Icon(Icons.warning, color: Colors.red),
                           SizedBox(width: 8),
-                          Text('ÍÇÏË'),
+                          Text('Ø­Ø§Ø¯Ø«'),
                         ],
                       ),
                     ),
@@ -96,7 +92,7 @@ class _CreateTicketScreenState
                         children: [
                           Icon(Icons.info, color: Colors.grey),
                           SizedBox(width: 8),
-                          Text('ÚÇã'),
+                          Text('Ø¹Ø§Ù…'),
                         ],
                       ),
                     ),
@@ -107,7 +103,7 @@ class _CreateTicketScreenState
             ),
             const SizedBox(height: 20),
             const Text(
-              'ÇáÃæáæíÉ',
+              'Ø§Ù„Ø£ÙˆÙ„ÙˆÙŠØ©',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 8),
@@ -117,7 +113,7 @@ class _CreateTicketScreenState
                   controller,
                   form.priority,
                   TicketPriority.low,
-                  'ÚÇÏíÉ',
+                  'Ø¹Ø§Ø¯ÙŠØ©',
                   Colors.green,
                 ),
                 const SizedBox(width: 8),
@@ -125,7 +121,7 @@ class _CreateTicketScreenState
                   controller,
                   form.priority,
                   TicketPriority.medium,
-                  'ãÊæÓØÉ',
+                  'Ù…ØªÙˆØ³Ø·Ø©',
                   Colors.blue,
                 ),
                 const SizedBox(width: 8),
@@ -133,7 +129,7 @@ class _CreateTicketScreenState
                   controller,
                   form.priority,
                   TicketPriority.high,
-                  'ÚÇáíÉ',
+                  'Ø¹Ø§Ù„ÙŠØ©',
                   Colors.orange,
                 ),
                 const SizedBox(width: 8),
@@ -141,21 +137,21 @@ class _CreateTicketScreenState
                   controller,
                   form.priority,
                   TicketPriority.urgent,
-                  'ÚÇÌáÉ',
+                  'Ø¹Ø§Ø¬Ù„Ø©',
                   Colors.red,
                 ),
               ],
             ),
             const SizedBox(height: 20),
             const Text(
-              'ÇáÊÝÇÕíá',
+              'Ø§Ù„ØªÙØ§ØµÙŠÙ„',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 8),
             TextField(
               decoration: const InputDecoration(
-                labelText: 'ÚäæÇä ÇáÊÐßÑÉ',
-                hintText: 'ãËÇá: ÚØá Ýí ÇáÝÑÇãá',
+                labelText: 'Ø¹Ù†ÙˆØ§Ù† Ø§Ù„ØªØ°ÙƒØ±Ø©',
+                hintText: 'Ù…Ø«Ø§Ù„: Ø¹Ø·Ù„ ÙÙŠ Ø§Ù„ÙØ±Ø§Ù…Ù„',
               ),
               onChanged: (val) => controller.setTitle(val),
             ),
@@ -163,8 +159,8 @@ class _CreateTicketScreenState
             TextField(
               maxLines: 4,
               decoration: const InputDecoration(
-                labelText: 'ÇáæÕÝ ÇáÊÝÕíáí',
-                hintText: 'ÇÔÑÍ ÇáãÔßáÉ ÈÇáÊÝÕíá...',
+                labelText: 'Ø§Ù„ÙˆØµÙ Ø§Ù„ØªÙØµÙŠÙ„ÙŠ',
+                hintText: 'Ø§Ø´Ø±Ø­ Ø§Ù„Ù…Ø´ÙƒÙ„Ø© Ø¨Ø§Ù„ØªÙØµÙŠÙ„...',
               ),
               onChanged: (val) => controller.setDescription(val),
             ),
@@ -173,14 +169,10 @@ class _CreateTicketScreenState
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'ÇáãÑÝÞÇÊ (ÕæÑ)',
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  'Ø§Ù„Ù…Ø±ÙÙ‚Ø§Øª (ØµÙˆØ±)',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
-                Text(
-                  '\/10',
-                  style: const TextStyle(color: Colors.grey),
-                ),
+                Text('/10', style: const TextStyle(color: Colors.grey)),
               ],
             ),
             const SizedBox(height: 8),
@@ -192,8 +184,7 @@ class _CreateTicketScreenState
                 itemBuilder: (context, index) {
                   if (index == form.photos.length) {
                     return InkWell(
-                      onTap: () =>
-                          _showAttachmentOptions(context, controller),
+                      onTap: () => _showAttachmentOptions(context, controller),
                       child: Container(
                         width: 100,
                         margin: const EdgeInsets.only(left: 8),
@@ -209,10 +200,7 @@ class _CreateTicketScreenState
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(Icons.add_a_photo, color: Colors.blue),
-                            Text(
-                              'ÅÖÇÝÉ',
-                              style: TextStyle(color: Colors.blue),
-                            ),
+                            Text('Ø¥Ø¶Ø§ÙØ©', style: TextStyle(color: Colors.blue)),
                           ],
                         ),
                       ),
@@ -260,28 +248,32 @@ class _CreateTicketScreenState
                   ? null
                   : () async {
                       setState(() => _isSubmitting = true);
+                      final navigator = Navigator.of(context);
+                      final scaffoldMessenger = ScaffoldMessenger.of(context);
+
                       final success = await controller.submit();
+
+                      if (!mounted) return;
                       setState(() => _isSubmitting = false);
-                      if (success && mounted) {
-                        Navigator.pop(context);
-                        ScaffoldMessenger.of(context).showSnackBar(
+
+                      if (success) {
+                        navigator.pop();
+                        scaffoldMessenger.showSnackBar(
                           const SnackBar(
-                            content: Text('Êã ÅÑÓÇá ÇáÊÐßÑÉ ÈäÌÇÍ!'),
+                            content: Text('ØªÙ… Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„ØªØ°ÙƒØ±Ø© Ø¨Ù†Ø¬Ø§Ø­!'),
                             backgroundColor: Colors.green,
                           ),
                         );
-                      } else if (!form.isValid && mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
+                      } else if (!form.isValid) {
+                        scaffoldMessenger.showSnackBar(
                           const SnackBar(
-                            content: Text(
-                                'íÑÌì ÊÚÈÆÉ ÌãíÚ ÇáÍÞæá ÇáãØáæÈÉ'),
+                            content: Text('ÙŠØ±Ø¬Ù‰ ØªØ¹Ø¨Ø¦Ø© Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø­Ù‚ÙˆÙ„ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ø©'),
                           ),
                         );
                       }
                     },
               style: FilledButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 backgroundColor: const Color(0xFF2563EB),
               ),
               child: _isSubmitting
@@ -294,7 +286,7 @@ class _CreateTicketScreenState
                       ),
                     )
                   : const Text(
-                      'ÅÑÓÇá ÇáÊÐßÑÉ',
+                      'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„ØªØ°ÙƒØ±Ø©',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -341,10 +333,7 @@ class _CreateTicketScreenState
     );
   }
 
-  void _showAttachmentOptions(
-    BuildContext context,
-    TicketNotifier controller,
-  ) {
+  void _showAttachmentOptions(BuildContext context, TicketNotifier controller) {
     showModalBottomSheet(
       context: context,
       builder: (context) => SafeArea(
@@ -353,7 +342,7 @@ class _CreateTicketScreenState
           children: [
             ListTile(
               leading: const Icon(Icons.camera_alt),
-              title: const Text('ÇáÊÞÇØ ÕæÑÉ'),
+              title: const Text('Ø§Ù„ØªÙ‚Ø§Ø· ØµÙˆØ±Ø©'),
               onTap: () {
                 Navigator.pop(context);
                 controller.addPhoto(ImageSource.camera);
@@ -361,7 +350,7 @@ class _CreateTicketScreenState
             ),
             ListTile(
               leading: const Icon(Icons.photo_library),
-              title: const Text('ãä ÇáÇÓÊæÏíæ'),
+              title: const Text('Ù…Ù† Ø§Ù„Ø§Ø³ØªÙˆØ¯ÙŠÙˆ'),
               onTap: () {
                 Navigator.pop(context);
                 controller.addPhoto(ImageSource.gallery);

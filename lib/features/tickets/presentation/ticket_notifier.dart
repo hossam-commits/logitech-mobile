@@ -16,8 +16,7 @@ class TicketNotifier extends StateNotifier<CreateTicketForm> {
 
   void setTitle(String val) => state = state.copyWith(title: val);
 
-  void setDescription(String val) =>
-      state = state.copyWith(description: val);
+  void setDescription(String val) => state = state.copyWith(description: val);
 
   Future<void> addPhoto(ImageSource source) async {
     if (state.photos.length >= 10) return;

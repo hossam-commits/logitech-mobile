@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'features/auth/presentation/screens/login_screen.dart';
+import 'core/config/app_config.dart';
+import 'core/logging/app_logger.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await Firebase.initializeApp();
+    AppLogger.i(
+      'Firebase initialized successfully in ${AppConfig.environment} mode',
+    );
+  } catch (e, st) {
+    AppLogger.e('Firebase initialize error', e, st);
+  }
+
   runApp(const ProviderScope(child: LogiTechApp()));
 }
 
@@ -13,8 +27,9 @@ class LogiTechApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'LogiTech Driver',
-      debugShowCheckedModeBanner: false,
+      title: AppConfig.appTitle,
+      debugShowCheckedModeBanner: !AppConfig.isProduction,
+      // ظ„ط§ط­ظ‚ط§ظ‹: ظˆظپظ‘ط± ط·ط±ظٹظ‚ط© ظ„طھط¹ط¯ظٹظ„ ط§ظ„ظ€ locale ط¹ط¨ط± Config ط¨ط¯ظ„ط§ظ‹ ظ…ظ† ط§ظ„ط­ط´ط± ظ‡ظ†ط§.
       locale: const Locale('ar', 'SA'),
       builder: (context, child) =>
           Directionality(textDirection: TextDirection.rtl, child: child!),

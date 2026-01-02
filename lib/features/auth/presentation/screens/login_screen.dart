@@ -1,27 +1,72 @@
 import 'package:flutter/material.dart';
 
-import '../../../dashboard/presentation/screens/main_dashboard.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logitech_mobile/features/dashboard/presentation/screens/main_dashboard.dart';
+import 'package:logitech_mobile/core/services/providers.dart';
+import 'package:logitech_mobile/core/logging/app_logger.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   Future<void> _handleLogin() async {
+    // طھط­ظ‚ظ‚ ظ…ظ† ط¥ط¯ط®ط§ظ„ط§طھ ط¨ط³ظٹط·ط© ظ‚ط¨ظ„ ط¨ط¯ط، ط§ظ„ط¹ظ…ظ„ظٹط©
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      // ط¹ط±ط¶ ط±ط³ط§ظ„ط© ط¨ط³ظٹط·ط© â€” ظ„ط§ط­ظ‚ط§ظ‹ ط§ط³طھط¨ط¯ظ„ظ‡ط§ ط¨ظ†ط¸ط§ظ… ط¥ط´ط¹ط§ط±ط§طھ ظ…ظˆط­ط¯ ط£ظˆ snackbar ظ…ط®طµطµ
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'ط§ظ„ط±ط¬ط§ط، ط¥ط¯ط®ط§ظ„ ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ ظˆظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±',
+          ),
+        ),
+      );
+      return;
+    }
+
     setState(() => _isLoading = true);
-    await Future.delayed(const Duration(seconds: 1));
-    if (!mounted) return;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const MainDashboard(),
-      ),
-    );
+
+    try {
+      final authRepo = ref.read(authRepositoryProvider);
+      await authRepo.signIn(email, password);
+
+      AppLogger.i('User $email logged in successfully');
+
+      if (!mounted) return;
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MainDashboard()),
+      );
+    } catch (e, st) {
+      AppLogger.e('Login failed for $email', e, st);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('ظپط´ظ„ طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„: $e')),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
   }
 
   @override
@@ -42,25 +87,25 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 16),
               const Text(
-                '������ �� �� ������',
+                'ظ…ط±ط­ط¨ظ‹ط§ ط¨ظƒ ظپظٹ ظ„ظˆط¬ظٹطھظƒ',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 48),
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: '������ ����������',
+              TextField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  labelText: 'ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ',
                   prefixIcon: Icon(Icons.email_outlined),
                 ),
               ),
               const SizedBox(height: 16),
-              const TextField(
+              TextField(
+                controller: _passwordController,
                 obscureText: true,
-                decoration: InputDecoration(
-                  labelText: '���� ������',
+                decoration: const InputDecoration(
+                  labelText: 'ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±',
                   prefixIcon: Icon(Icons.lock_outline),
                 ),
               ),
@@ -68,15 +113,19 @@ class _LoginScreenState extends State<LoginScreen> {
               FilledButton(
                 onPressed: _isLoading ? null : _handleLogin,
                 style: FilledButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
                   backgroundColor: const Color(0xFF2563EB),
                 ),
                 child: _isLoading
-                    ? const CircularProgressIndicator(
-                        color: Colors.white,
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
                       )
-                    : const Text('����� ������'),
+                    : const Text('طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„'),
               ),
             ],
           ),

@@ -6,5 +6,5 @@ import '../../../core/services/providers.dart';
 
 final preparationProvider =
     StateNotifierProvider<PreparationNotifier, DailyPreparationForm>(
-  (ref) => PreparationNotifier(ref.watch(preparationUseCaseProvider)),
-);
+      (ref) => PreparationNotifier(ref.watch(preparationUseCaseProvider)),
+    );

@@ -1,4 +1,8 @@
-final List<Map<String, dynamic>> MOCK_MESSAGES = [
-  {'sender': 'system', 'text': 'Êã ÇÓÊáÇã ØáÈß ÈäÌÇÍ', 'time': '10:00 AM'},
-  {'sender': 'supervisor', 'text': 'ãÑÍÈÇğ¡ åá ÇáÓíÇÑÉ İí ÇáæÑÔÉ ÇáÂä¿', 'time': '10:15 AM'},
+final List<Map<String, dynamic>> mockMessages = [
+  {'sender': 'system', 'text': 'ØªÙ… Ø§Ø³ØªÙ„Ø§Ù… Ø·Ù„Ø¨Ùƒ Ø¨Ù†Ø¬Ø§Ø­', 'time': '10:00 AM'},
+  {
+    'sender': 'supervisor',
+    'text': 'Ù…Ø±Ø­Ø¨Ø§Ù‹ØŒ Ù‡Ù„ Ø§Ù„Ø³ÙŠØ§Ø±Ø© ÙÙŠ Ø§Ù„ÙˆØ±Ø´Ø© Ø§Ù„Ø¢Ù†ØŸ',
+    'time': '10:15 AM',
+  },
 ];

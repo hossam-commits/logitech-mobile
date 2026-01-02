@@ -9,8 +9,7 @@ class VehicleCheckInNotifier extends StateNotifier<VehicleCheckInForm> {
 
   VehicleCheckInNotifier(this._useCase) : super(VehicleCheckInForm());
 
-  void setVehicleId(String? id) =>
-      state = state.copyWith(vehicleId: id);
+  void setVehicleId(String? id) => state = state.copyWith(vehicleId: id);
 
   void setOdometer(String value) {
     final parsed = int.tryParse(value);

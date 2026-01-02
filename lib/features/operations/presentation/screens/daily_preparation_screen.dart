@@ -22,7 +22,7 @@ class _DailyPreparationScreenState
     final controller = ref.read(preparationProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('«· Õ÷Ì— «·ÌÊ„Ì')),
+      appBar: AppBar(title: const Text('ÿßŸÑÿ™ÿ≠ÿ∂Ÿäÿ± ÿßŸÑŸäŸàŸÖŸä')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -44,12 +44,12 @@ class _DailyPreparationScreenState
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    '«·„Êﬁ⁄ «·Õ«·Ì',
+                    'ÿßŸÑŸÖŸàŸÇÿπ ÿßŸÑÿ≠ÿßŸÑŸä',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    form.locationCoordinates ?? '·„ Ì „ «· ÕœÌœ',
+                    form.locationCoordinates ?? 'ŸÑŸÖ Ÿäÿ™ŸÖ ÿßŸÑÿ™ÿ≠ÿØŸäÿØ',
                     style: const TextStyle(color: Colors.grey),
                   ),
                   if (form.city != null)
@@ -64,7 +64,7 @@ class _DailyPreparationScreenState
                   OutlinedButton.icon(
                     onPressed: () => controller.updateLocation(),
                     icon: const Icon(Icons.my_location),
-                    label: const Text(' ÕœÌÀ «·„Êﬁ⁄'),
+                    label: const Text('ÿ™ÿ≠ÿØŸäÿ´ ÿßŸÑŸÖŸàŸÇÿπ'),
                   ),
                 ],
               ),
@@ -79,14 +79,10 @@ class _DailyPreparationScreenState
               ),
               child: Column(
                 children: [
-                  const Icon(
-                    Icons.speed,
-                    size: 40,
-                    color: Colors.orange,
-                  ),
+                  const Icon(Icons.speed, size: 40, color: Colors.orange),
                   const SizedBox(height: 8),
                   const Text(
-                    'ﬁ—«¡… «·⁄œ«œ',
+                    'ŸÇÿ±ÿßÿ°ÿ© ÿßŸÑÿπÿØÿßÿØ',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
@@ -94,9 +90,9 @@ class _DailyPreparationScreenState
                     controller: _odometerController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      labelText: '«·ﬁ—«¡… «·Õ«·Ì…',
+                      labelText: 'ÿßŸÑŸÇÿ±ÿßÿ°ÿ© ÿßŸÑÿ≠ÿßŸÑŸäÿ©',
                       suffixText: 'KM',
-                      hintText: '√ﬂ»— „‰ 50,000',
+                      hintText: 'ÿ£ŸÉÿ®ÿ± ŸÖŸÜ 50,000',
                     ),
                   ),
                 ],
@@ -128,7 +124,7 @@ class _DailyPreparationScreenState
                           ),
                           SizedBox(height: 8),
                           Text(
-                            '«· ﬁÿ ’Ê—… ”Ì·›Ì',
+                            'ÿßŸÑÿ™ŸÇÿ∑ ÿµŸàÿ±ÿ© ÿ≥ŸäŸÑŸÅŸä',
                             style: TextStyle(color: Colors.grey),
                           ),
                         ],
@@ -140,20 +136,14 @@ class _DailyPreparationScreenState
                           children: [
                             Container(
                               color: Colors.grey.shade200,
-                              child: const Icon(
-                                Icons.person,
-                                size: 80,
-                              ),
+                              child: const Icon(Icons.person, size: 80),
                             ),
                             const Positioned(
                               bottom: 10,
                               right: 10,
                               child: CircleAvatar(
                                 backgroundColor: Colors.green,
-                                child: Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                ),
+                                child: Icon(Icons.check, color: Colors.white),
                               ),
                             ),
                           ],
@@ -167,36 +157,35 @@ class _DailyPreparationScreenState
                   ? null
                   : () async {
                       setState(() => _isSubmitting = true);
-                      final error = await controller
-                          .submit(_odometerController.text);
+                      final navigator = Navigator.of(context);
+                      final scaffoldMessenger = ScaffoldMessenger.of(context);
+                      
+                      final error = await controller.submit(
+                        _odometerController.text,
+                      );
+                      
+                      if (!mounted) return;
                       setState(() => _isSubmitting = false);
+                      
                       if (error == null) {
-                        if (mounted) {
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                  ' „ «· Õ÷Ì— »‰Ã«Õ° ÌÊ„ „Ê›ﬁ! ??'),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
-                        }
+                        navigator.pop();
+                        scaffoldMessenger.showSnackBar(
+                          const SnackBar(
+                            content: Text('ÿ™ŸÖ ÿßŸÑÿ™ÿ≠ÿ∂Ÿäÿ± ÿ®ŸÜÿ¨ÿßÿ≠ÿå ŸäŸàŸÖ ŸÖŸàŸÅŸÇ! üåü'),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
                       } else {
-                        if (mounted) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(
-                            SnackBar(
-                              content: Text(error),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
+                        scaffoldMessenger.showSnackBar(
+                          SnackBar(
+                            content: Text(error),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
                       }
                     },
               style: FilledButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 backgroundColor: const Color(0xFF2563EB),
               ),
               child: _isSubmitting
@@ -209,7 +198,7 @@ class _DailyPreparationScreenState
                       ),
                     )
                   : const Text(
-                      '»œ¡ «·œÊ«„',
+                      'ÿ®ÿØÿ° ÿßŸÑÿØŸàÿßŸÖ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,

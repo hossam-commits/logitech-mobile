@@ -6,5 +6,5 @@ import '../../../core/services/providers.dart';
 
 final accidentProvider =
     StateNotifierProvider<AccidentNotifier, AccidentReportForm>(
-  (ref) => AccidentNotifier(ref.watch(accidentUseCaseProvider)),
-);
+      (ref) => AccidentNotifier(ref.watch(accidentUseCaseProvider)),
+    );
