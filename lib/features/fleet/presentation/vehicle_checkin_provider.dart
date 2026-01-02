@@ -5,6 +5,6 @@ import 'vehicle_checkin_notifier.dart';
 import '../../../core/services/providers.dart';
 
 final vehicleCheckInProvider =
-    StateNotifierProvider<VehicleCheckInNotifier, VehicleCheckInForm>(
-      (ref) => VehicleCheckInNotifier(ref.watch(checkInUseCaseProvider)),
-    );
+    NotifierProvider<VehicleCheckInNotifier, VehicleCheckInForm>(
+  VehicleCheckInNotifier.new,
+);

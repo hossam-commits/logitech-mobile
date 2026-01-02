@@ -3,9 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/chat_message.dart';
 import '../../../core/constants/mock_messages.dart';
 
-class ChatNotifier extends StateNotifier<List<ChatMessage>> {
-  ChatNotifier() : super([]) {
-    state = mockMessages
+class ChatNotifier extends Notifier<List<ChatMessage>> {
+  bool _mounted = true;
+
+  @override
+  List<ChatMessage> build() {
+    ref.onDispose(() => _mounted = false);
+    return mockMessages
         .map(
           (m) => ChatMessage(
             id: DateTime.now().toString(),
@@ -34,7 +38,7 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
         sender: 'supervisor',
         timestamp: DateTime.now(),
       );
-      if (mounted) {
+      if (_mounted) {
         state = [...state, reply];
       }
     });

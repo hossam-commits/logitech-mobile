@@ -3,11 +3,15 @@ import 'package:image_picker/image_picker.dart';
 
 import '../domain/create_ticket_form.dart';
 import '../../../core/services/ticket_manager_usecase.dart';
+import '../../../core/services/providers.dart';
 
-class TicketNotifier extends StateNotifier<CreateTicketForm> {
-  final TicketManagerUseCase _useCase;
+class TicketNotifier extends Notifier<CreateTicketForm> {
+  @override
+  CreateTicketForm build() {
+    return CreateTicketForm();
+  }
 
-  TicketNotifier(this._useCase) : super(CreateTicketForm());
+  TicketManagerUseCase get _useCase => ref.watch(ticketUseCaseProvider);
 
   void setType(TicketType? type) => state = state.copyWith(type: type);
 
@@ -27,6 +31,7 @@ class TicketNotifier extends StateNotifier<CreateTicketForm> {
   }
 
   void removePhoto(int index) {
+    if (index < 0 || index >= state.photos.length) return;
     final newPhotos = List<XFile>.from(state.photos)..removeAt(index);
     state = state.copyWith(photos: newPhotos);
   }

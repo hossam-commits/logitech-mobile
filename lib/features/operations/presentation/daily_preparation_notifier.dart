@@ -2,11 +2,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/daily_preparation_form.dart';
 import '../../../core/services/daily_preparation_usecase.dart';
+import '../../../core/services/providers.dart';
 
-class PreparationNotifier extends StateNotifier<DailyPreparationForm> {
-  final DailyPreparationUseCase _useCase;
+class PreparationNotifier extends Notifier<DailyPreparationForm> {
+  @override
+  DailyPreparationForm build() {
+    return DailyPreparationForm();
+  }
 
-  PreparationNotifier(this._useCase) : super(DailyPreparationForm());
+  DailyPreparationUseCase get _useCase => ref.watch(preparationUseCaseProvider);
 
   Future<void> updateLocation() async {
     try {

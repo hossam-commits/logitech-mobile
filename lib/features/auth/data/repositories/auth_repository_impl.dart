@@ -2,7 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_repository.dart';
 
 class FirebaseAuthRepository implements IAuthRepository {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth;
+
+  FirebaseAuthRepository({FirebaseAuth? auth})
+      : _auth = auth ?? FirebaseAuth.instance;
 
   @override
   Stream<AuthUser?> get authStateChanges => _auth.authStateChanges().map(

@@ -35,7 +35,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-            'ط§ظ„ط±ط¬ط§ط، ط¥ط¯ط®ط§ظ„ ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ ظˆظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±',
+            'الرجاء إدخال البريد الإلكتروني وكلمة المرور',
           ),
         ),
       );
@@ -48,7 +48,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       final authRepo = ref.read(authRepositoryProvider);
       await authRepo.signIn(email, password);
 
-      AppLogger.i('User $email logged in successfully');
+      AppLogger.logUserAction('login', metadata: {'email': email});
+      AppLogger.info('User $email logged in successfully');
 
       if (!mounted) return;
 
@@ -57,10 +58,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         MaterialPageRoute(builder: (context) => const MainDashboard()),
       );
     } catch (e, st) {
-      AppLogger.e('Login failed for $email', e, st);
+      AppLogger.error('Login failed for $email', e, st);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('ظپط´ظ„ طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„: $e')),
+        SnackBar(content: Text('فشل تسجيل الدخول: $e')),
       );
     } finally {
       if (mounted) {
@@ -87,7 +88,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               const SizedBox(height: 16),
               const Text(
-                'ظ…ط±ط­ط¨ظ‹ط§ ط¨ظƒ ظپظٹ ظ„ظˆط¬ظٹطھظƒ',
+                'مرحباً بك في لوجيتك',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
@@ -96,7 +97,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
-                  labelText: 'ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ',
+                  labelText: 'البريد الإلكتروني',
                   prefixIcon: Icon(Icons.email_outlined),
                 ),
               ),
@@ -105,7 +106,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
-                  labelText: 'ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±',
+                  labelText: 'كلمة المرور',
                   prefixIcon: Icon(Icons.lock_outline),
                 ),
               ),
@@ -125,7 +126,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           strokeWidth: 2,
                         ),
                       )
-                    : const Text('طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„'),
+                    : const Text('تسجيل الدخول'),
               ),
             ],
           ),

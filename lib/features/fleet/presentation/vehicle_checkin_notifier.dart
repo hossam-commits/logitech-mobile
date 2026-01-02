@@ -3,11 +3,15 @@ import 'package:image_picker/image_picker.dart';
 
 import '../domain/vehicle_checkin_form.dart';
 import '../../../core/services/submit_vehicle_checkin_usecase.dart';
+import '../../../core/services/providers.dart';
 
-class VehicleCheckInNotifier extends StateNotifier<VehicleCheckInForm> {
-  final SubmitVehicleCheckInUseCase _useCase;
+class VehicleCheckInNotifier extends Notifier<VehicleCheckInForm> {
+  @override
+  VehicleCheckInForm build() {
+    return VehicleCheckInForm();
+  }
 
-  VehicleCheckInNotifier(this._useCase) : super(VehicleCheckInForm());
+  SubmitVehicleCheckInUseCase get _useCase => ref.watch(checkInUseCaseProvider);
 
   void setVehicleId(String? id) => state = state.copyWith(vehicleId: id);
 

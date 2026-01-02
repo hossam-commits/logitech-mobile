@@ -11,11 +11,11 @@ void main() async {
 
   try {
     await Firebase.initializeApp();
-    AppLogger.i(
+    AppLogger.info(
       'Firebase initialized successfully in ${AppConfig.environment} mode',
     );
   } catch (e, st) {
-    AppLogger.e('Firebase initialize error', e, st);
+    AppLogger.error('Firebase initialize error', e, st);
   }
 
   runApp(const ProviderScope(child: LogiTechApp()));

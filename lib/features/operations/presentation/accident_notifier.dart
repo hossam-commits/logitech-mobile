@@ -2,11 +2,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/accident_report_form.dart';
 import '../../../core/services/accident_reporting_usecase.dart';
+import '../../../core/services/providers.dart';
 
-class AccidentNotifier extends StateNotifier<AccidentReportForm> {
-  final AccidentReportingUseCase _useCase;
+class AccidentNotifier extends Notifier<AccidentReportForm> {
+  @override
+  AccidentReportForm build() {
+    return AccidentReportForm();
+  }
 
-  AccidentNotifier(this._useCase) : super(AccidentReportForm());
+  AccidentReportingUseCase get _useCase => ref.watch(accidentUseCaseProvider);
 
   void init() async {
     final loc = await _useCase.fetchLocation();
