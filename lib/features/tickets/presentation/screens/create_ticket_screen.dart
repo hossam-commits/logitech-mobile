@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -10,12 +10,10 @@ class CreateTicketScreen extends ConsumerStatefulWidget {
   const CreateTicketScreen({super.key});
 
   @override
-  ConsumerState<CreateTicketScreen> createState() =>
-      _CreateTicketScreenState();
+  ConsumerState<CreateTicketScreen> createState() => _CreateTicketScreenState();
 }
 
-class _CreateTicketScreenState
-    extends ConsumerState<CreateTicketScreen> {
+class _CreateTicketScreenState extends ConsumerState<CreateTicketScreen> {
   bool _isSubmitting = false;
 
   @override
@@ -62,8 +60,7 @@ class _CreateTicketScreenState
                       value: TicketType.fuel,
                       child: Row(
                         children: [
-                          Icon(Icons.local_gas_station,
-                              color: Colors.blue),
+                          Icon(Icons.local_gas_station, color: Colors.blue),
                           SizedBox(width: 8),
                           Text('وقود'),
                         ],
@@ -73,8 +70,7 @@ class _CreateTicketScreenState
                       value: TicketType.carWash,
                       child: Row(
                         children: [
-                          Icon(Icons.local_car_wash,
-                              color: Colors.cyan),
+                          Icon(Icons.local_car_wash, color: Colors.cyan),
                           SizedBox(width: 8),
                           Text('غسيل'),
                         ],
@@ -174,13 +170,9 @@ class _CreateTicketScreenState
               children: [
                 const Text(
                   'المرفقات (صور)',
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
-                Text(
-                  '/10',
-                  style: const TextStyle(color: Colors.grey),
-                ),
+                Text('/10', style: const TextStyle(color: Colors.grey)),
               ],
             ),
             const SizedBox(height: 8),
@@ -192,8 +184,7 @@ class _CreateTicketScreenState
                 itemBuilder: (context, index) {
                   if (index == form.photos.length) {
                     return InkWell(
-                      onTap: () =>
-                          _showAttachmentOptions(context, controller),
+                      onTap: () => _showAttachmentOptions(context, controller),
                       child: Container(
                         width: 100,
                         margin: const EdgeInsets.only(left: 8),
@@ -209,10 +200,7 @@ class _CreateTicketScreenState
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(Icons.add_a_photo, color: Colors.blue),
-                            Text(
-                              'إضافة',
-                              style: TextStyle(color: Colors.blue),
-                            ),
+                            Text('إضافة', style: TextStyle(color: Colors.blue)),
                           ],
                         ),
                       ),
@@ -273,15 +261,13 @@ class _CreateTicketScreenState
                       } else if (!form.isValid && mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text(
-                                'يرجى تعبئة جميع الحقول المطلوبة'),
+                            content: Text('يرجى تعبئة جميع الحقول المطلوبة'),
                           ),
                         );
                       }
                     },
               style: FilledButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 backgroundColor: const Color(0xFF2563EB),
               ),
               child: _isSubmitting
@@ -341,10 +327,7 @@ class _CreateTicketScreenState
     );
   }
 
-  void _showAttachmentOptions(
-    BuildContext context,
-    TicketNotifier controller,
-  ) {
+  void _showAttachmentOptions(BuildContext context, TicketNotifier controller) {
     showModalBottomSheet(
       context: context,
       builder: (context) => SafeArea(

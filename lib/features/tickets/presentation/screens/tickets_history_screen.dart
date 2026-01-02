@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'package:logitech_mobile/core/constants/mock_tickets_data.dart';
 import 'ticket_details_screen.dart';
@@ -7,8 +7,7 @@ class TicketsHistoryScreen extends StatefulWidget {
   const TicketsHistoryScreen({super.key});
 
   @override
-  State<TicketsHistoryScreen> createState() =>
-      _TicketsHistoryScreenState();
+  State<TicketsHistoryScreen> createState() => _TicketsHistoryScreenState();
 }
 
 class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
@@ -18,9 +17,7 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
   Widget build(BuildContext context) {
     final filtered = _filter == 'all'
         ? MOCK_TICKETS_DATA
-        : MOCK_TICKETS_DATA
-            .where((t) => t['status'] == _filter)
-            .toList();
+        : MOCK_TICKETS_DATA.where((t) => t['status'] == _filter).toList();
 
     return Scaffold(
       appBar: AppBar(title: const Text('سجل التذاكر')),
@@ -57,8 +54,7 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (c) =>
-                            TicketDetailsScreen(ticket: t),
+                        builder: (c) => TicketDetailsScreen(ticket: t),
                       ),
                     ),
                     leading: Container(
@@ -70,33 +66,23 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
-                        isUrgent
-                            ? Icons.warning
-                            : Icons.confirmation_number,
-                        color:
-                            isUrgent ? Colors.red : Colors.blue,
+                        isUrgent ? Icons.warning : Icons.confirmation_number,
+                        color: isUrgent ? Colors.red : Colors.blue,
                       ),
                     ),
                     title: Text(
                       t['title'],
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: const Text(
                       ' • ',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
-                      ),
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                     trailing: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          t['status'] == 'open'
-                              ? 'مفتوحة'
-                              : 'مغلقة',
+                          t['status'] == 'open' ? 'مفتوحة' : 'مغلقة',
                           style: TextStyle(
                             color: t['status'] == 'open'
                                 ? Colors.orange
@@ -124,9 +110,7 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
       selected: isSelected,
       onSelected: (val) => setState(() => _filter = key),
       selectedColor: const Color(0xFF2563EB),
-      labelStyle: TextStyle(
-        color: isSelected ? Colors.white : Colors.black,
-      ),
+      labelStyle: TextStyle(color: isSelected ? Colors.white : Colors.black),
     );
   }
 }

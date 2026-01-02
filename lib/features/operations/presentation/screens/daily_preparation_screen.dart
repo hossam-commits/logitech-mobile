@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../preparation_provider.dart';
@@ -79,11 +79,7 @@ class _DailyPreparationScreenState
               ),
               child: Column(
                 children: [
-                  const Icon(
-                    Icons.speed,
-                    size: 40,
-                    color: Colors.orange,
-                  ),
+                  const Icon(Icons.speed, size: 40, color: Colors.orange),
                   const SizedBox(height: 8),
                   const Text(
                     'قراءة العداد',
@@ -140,20 +136,14 @@ class _DailyPreparationScreenState
                           children: [
                             Container(
                               color: Colors.grey.shade200,
-                              child: const Icon(
-                                Icons.person,
-                                size: 80,
-                              ),
+                              child: const Icon(Icons.person, size: 80),
                             ),
                             const Positioned(
                               bottom: 10,
                               right: 10,
                               child: CircleAvatar(
                                 backgroundColor: Colors.green,
-                                child: Icon(
-                                  Icons.check,
-                                  color: Colors.white,
-                                ),
+                                child: Icon(Icons.check, color: Colors.white),
                               ),
                             ),
                           ],
@@ -167,25 +157,23 @@ class _DailyPreparationScreenState
                   ? null
                   : () async {
                       setState(() => _isSubmitting = true);
-                      final error = await controller
-                          .submit(_odometerController.text);
+                      final error = await controller.submit(
+                        _odometerController.text,
+                      );
                       setState(() => _isSubmitting = false);
                       if (error == null) {
                         if (mounted) {
                           Navigator.pop(context);
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(
+                          ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text(
-                                  'تم التحضير بنجاح، يوم موفق! ??'),
+                              content: Text('تم التحضير بنجاح، يوم موفق! ??'),
                               backgroundColor: Colors.green,
                             ),
                           );
                         }
                       } else {
                         if (mounted) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(
+                          ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(error),
                               backgroundColor: Colors.red,
@@ -195,8 +183,7 @@ class _DailyPreparationScreenState
                       }
                     },
               style: FilledButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 backgroundColor: const Color(0xFF2563EB),
               ),
               child: _isSubmitting

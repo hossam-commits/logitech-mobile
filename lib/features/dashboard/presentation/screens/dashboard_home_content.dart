@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'package:logitech_mobile/core/constants/mock_tickets_data.dart';
@@ -12,12 +12,10 @@ class DashboardHomeContent extends StatefulWidget {
   const DashboardHomeContent({super.key});
 
   @override
-  State<DashboardHomeContent> createState() =>
-      _DashboardHomeContentState();
+  State<DashboardHomeContent> createState() => _DashboardHomeContentState();
 }
 
-class _DashboardHomeContentState
-    extends State<DashboardHomeContent> {
+class _DashboardHomeContentState extends State<DashboardHomeContent> {
   bool _isOnline = false;
 
   @override
@@ -37,20 +35,15 @@ class _DashboardHomeContentState
               ),
             ),
             Text(
-              intl.DateFormat('EEEE, d MMMM', 'ar_SA')
-                  .format(DateTime.now()),
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
-              ),
+              intl.DateFormat('EEEE, d MMMM', 'ar_SA').format(DateTime.now()),
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ],
         ),
         actions: [
           Switch(
             value: _isOnline,
-            onChanged: (val) =>
-                setState(() => _isOnline = val),
+            onChanged: (val) => setState(() => _isOnline = val),
             activeColor: Colors.green,
           ),
           const SizedBox(width: 16),
@@ -65,9 +58,7 @@ class _DashboardHomeContentState
             FilledButton.icon(
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (c) => const AccidentWizardScreen(),
-                ),
+                MaterialPageRoute(builder: (c) => const AccidentWizardScreen()),
               ),
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.red.shade50,
@@ -81,10 +72,7 @@ class _DashboardHomeContentState
               icon: const Icon(Icons.warning_amber_rounded),
               label: const Text(
                 'إبلاغ عن حادث طارئ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
             ),
             const SizedBox(height: 24),
@@ -103,8 +91,7 @@ class _DashboardHomeContentState
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (c) =>
-                          const VehicleCheckInScreen(),
+                      builder: (c) => const VehicleCheckInScreen(),
                     ),
                   ),
                 ),
@@ -115,8 +102,7 @@ class _DashboardHomeContentState
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (c) =>
-                          const DailyPreparationScreen(),
+                      builder: (c) => const DailyPreparationScreen(),
                     ),
                   ),
                 ),
@@ -127,8 +113,7 @@ class _DashboardHomeContentState
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (c) =>
-                          const CreateTicketScreen(),
+                      builder: (c) => const CreateTicketScreen(),
                     ),
                   ),
                 ),
@@ -148,42 +133,39 @@ class _DashboardHomeContentState
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
                     'آخر التذاكر',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
-                  ...MOCK_TICKETS_DATA.take(2).map(
-                    (t) => Column(
-                      children: [
-                        InkWell(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (c) =>
-                                  TicketDetailsScreen(
-                                ticket: t,
+                  ...MOCK_TICKETS_DATA
+                      .take(2)
+                      .map(
+                        (t) => Column(
+                          children: [
+                            InkWell(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (c) =>
+                                      TicketDetailsScreen(ticket: t),
+                                ),
+                              ),
+                              child: _buildTicketItem(
+                                t['id'],
+                                t['title'],
+                                t['status'],
+                                t['status'] == 'open'
+                                    ? Colors.orange
+                                    : Colors.green,
                               ),
                             ),
-                          ),
-                          child: _buildTicketItem(
-                            t['id'],
-                            t['title'],
-                            t['status'],
-                            t['status'] == 'open'
-                                ? Colors.orange
-                                : Colors.green,
-                          ),
+                            const Divider(),
+                          ],
                         ),
-                        const Divider(),
-                      ],
-                    ),
-                  ),
+                      ),
                 ],
               ),
             ),
@@ -199,20 +181,13 @@ class _DashboardHomeContentState
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: _isOnline
-              ? [
-                  const Color(0xFF2563EB),
-                  const Color(0xFF1D4ED8),
-                ]
-              : [
-                  Colors.grey,
-                  Colors.grey.shade700,
-                ],
+              ? [const Color(0xFF2563EB), const Color(0xFF1D4ED8)]
+              : [Colors.grey, Colors.grey.shade700],
         ),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
-        mainAxisAlignment:
-            MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             _isOnline ? 'أنت متصل الآن' : 'أنت غير متصل',
@@ -222,10 +197,7 @@ class _DashboardHomeContentState
               fontWeight: FontWeight.bold,
             ),
           ),
-          Icon(
-            _isOnline ? Icons.wifi : Icons.wifi_off,
-            color: Colors.white,
-          ),
+          Icon(_isOnline ? Icons.wifi : Icons.wifi_off, color: Colors.white),
         ],
       ),
     );
@@ -245,21 +217,11 @@ class _DashboardHomeContentState
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              color: color,
-              size: 28,
-            ),
+            Icon(icon, color: color, size: 28),
             const SizedBox(height: 12),
-            Text(
-              label,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -289,30 +251,18 @@ class _DashboardHomeContentState
         const SizedBox(width: 12),
         Expanded(
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
               Text(
                 id,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                ),
+                style: const TextStyle(color: Colors.grey, fontSize: 12),
               ),
             ],
           ),
         ),
         Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 6,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: statusColor.withOpacity(0.1),
             borderRadius: BorderRadius.circular(20),

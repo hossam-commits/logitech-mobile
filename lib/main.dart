@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -11,7 +11,9 @@ void main() async {
 
   try {
     await Firebase.initializeApp();
-    AppLogger.i('Firebase initialized successfully in ${AppConfig.environment} mode');
+    AppLogger.i(
+      'Firebase initialized successfully in ${AppConfig.environment} mode',
+    );
   } catch (e, st) {
     AppLogger.e('Firebase initialize error', e, st);
   }

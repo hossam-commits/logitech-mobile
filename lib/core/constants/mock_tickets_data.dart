@@ -1,11 +1,11 @@
-﻿final List<Map<String, dynamic>> MOCK_TICKETS_DATA = [
+final List<Map<String, dynamic>> MOCK_TICKETS_DATA = [
   {
     'id': 'TKT-101',
     'title': 'عطل في الفرامل',
     'status': 'open',
     'date': '2024-10-25',
     'type': 'maintenance',
-    'priority': 'high'
+    'priority': 'high',
   },
   {
     'id': 'TKT-102',
@@ -13,7 +13,7 @@
     'status': 'closed',
     'date': '2024-10-24',
     'type': 'fuel',
-    'priority': 'medium'
+    'priority': 'medium',
   },
   {
     'id': 'TKT-103',
@@ -21,7 +21,7 @@
     'status': 'in_progress',
     'date': '2024-10-26',
     'type': 'accident',
-    'priority': 'urgent'
+    'priority': 'urgent',
   },
   {
     'id': 'TKT-104',
@@ -29,6 +29,6 @@
     'status': 'open',
     'date': '2024-10-27',
     'type': 'carWash',
-    'priority': 'low'
+    'priority': 'low',
   },
 ];

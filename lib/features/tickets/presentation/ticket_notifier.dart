@@ -1,4 +1,4 @@
-﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../domain/create_ticket_form.dart';
@@ -16,8 +16,7 @@ class TicketNotifier extends StateNotifier<CreateTicketForm> {
 
   void setTitle(String val) => state = state.copyWith(title: val);
 
-  void setDescription(String val) =>
-      state = state.copyWith(description: val);
+  void setDescription(String val) => state = state.copyWith(description: val);
 
   Future<void> addPhoto(ImageSource source) async {
     if (state.photos.length >= 10) return;

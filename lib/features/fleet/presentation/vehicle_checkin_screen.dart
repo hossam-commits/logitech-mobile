@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -13,8 +13,7 @@ class VehicleCheckInScreen extends ConsumerStatefulWidget {
       _VehicleCheckInScreenState();
 }
 
-class _VehicleCheckInScreenState
-    extends ConsumerState<VehicleCheckInScreen> {
+class _VehicleCheckInScreenState extends ConsumerState<VehicleCheckInScreen> {
   int _currentStep = 0;
   final List<Map<String, dynamic>> _vehicles = MOCK_VEHICLES;
 
@@ -37,15 +36,13 @@ class _VehicleCheckInScreenState
           }
           if (_currentStep == 1 && formState.odometer == null) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('الرجاء إدخال قراءة عداد صحيحة')),
+              const SnackBar(content: Text('الرجاء إدخال قراءة عداد صحيحة')),
             );
             return;
           }
           if (_currentStep == 2 && formState.photos.containsValue(null)) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                  content: Text('يجب التقاط جميع الصور الـ 4')),
+              const SnackBar(content: Text('يجب التقاط جميع الصور الـ 4')),
             );
             return;
           }
@@ -111,9 +108,17 @@ class _VehicleCheckInScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildPhoto(
-                        context, 'أمام', 'front', formState.photos['front']),
+                      context,
+                      'أمام',
+                      'front',
+                      formState.photos['front'],
+                    ),
                     _buildPhoto(
-                        context, 'خلف', 'back', formState.photos['back']),
+                      context,
+                      'خلف',
+                      'back',
+                      formState.photos['back'],
+                    ),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -121,9 +126,17 @@ class _VehicleCheckInScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildPhoto(
-                        context, 'يمين', 'right', formState.photos['right']),
+                      context,
+                      'يمين',
+                      'right',
+                      formState.photos['right'],
+                    ),
                     _buildPhoto(
-                        context, 'يسار', 'left', formState.photos['left']),
+                      context,
+                      'يسار',
+                      'left',
+                      formState.photos['left'],
+                    ),
                   ],
                 ),
               ],
@@ -142,17 +155,14 @@ class _VehicleCheckInScreenState
     XFile? file,
   ) {
     return InkWell(
-      onTap: () =>
-          ref.read(vehicleCheckInProvider.notifier).capturePhoto(key),
+      onTap: () => ref.read(vehicleCheckInProvider.notifier).capturePhoto(key),
       child: Column(
         children: [
           Container(
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              color: file != null
-                  ? Colors.green.shade50
-                  : Colors.grey.shade100,
+              color: file != null ? Colors.green.shade50 : Colors.grey.shade100,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: file != null ? Colors.green : Colors.grey.shade400,
@@ -168,10 +178,7 @@ class _VehicleCheckInScreenState
           const SizedBox(height: 8),
           Text(
             label,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
         ],
       ),

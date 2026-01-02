@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -14,8 +14,7 @@ class TicketDetailsScreen extends ConsumerStatefulWidget {
       _TicketDetailsScreenState();
 }
 
-class _TicketDetailsScreenState
-    extends ConsumerState<TicketDetailsScreen> {
+class _TicketDetailsScreenState extends ConsumerState<TicketDetailsScreen> {
   final _messageController = TextEditingController();
 
   @override
@@ -34,8 +33,7 @@ class _TicketDetailsScreenState
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'رقم التذكرة: ',
@@ -56,14 +54,11 @@ class _TicketDetailsScreenState
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
-                        widget.ticket['status'] == 'open'
-                            ? 'مفتوحة'
-                            : 'مغلقة',
+                        widget.ticket['status'] == 'open' ? 'مفتوحة' : 'مغلقة',
                         style: TextStyle(
-                          color:
-                              widget.ticket['status'] == 'open'
-                                  ? Colors.orange
-                                  : Colors.green,
+                          color: widget.ticket['status'] == 'open'
+                              ? Colors.orange
+                              : Colors.green,
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
                         ),
@@ -101,8 +96,7 @@ class _TicketDetailsScreenState
                 if (isSystem) {
                   return Center(
                     child: Container(
-                      margin:
-                          const EdgeInsets.symmetric(vertical: 8),
+                      margin: const EdgeInsets.symmetric(vertical: 8),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 16,
                         vertical: 4,
@@ -127,17 +121,13 @@ class _TicketDetailsScreenState
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
                   child: Container(
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 4),
+                    margin: const EdgeInsets.symmetric(vertical: 4),
                     padding: const EdgeInsets.all(12),
                     constraints: BoxConstraints(
-                      maxWidth:
-                          MediaQuery.of(context).size.width * 0.7,
+                      maxWidth: MediaQuery.of(context).size.width * 0.7,
                     ),
                     decoration: BoxDecoration(
-                      color: isMe
-                          ? const Color(0xFF2563EB)
-                          : Colors.white,
+                      color: isMe ? const Color(0xFF2563EB) : Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: const Radius.circular(12),
                         topRight: const Radius.circular(12),
@@ -157,26 +147,20 @@ class _TicketDetailsScreenState
                       ],
                     ),
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           msg.text,
                           style: TextStyle(
-                            color: isMe
-                                ? Colors.white
-                                : Colors.black87,
+                            color: isMe ? Colors.white : Colors.black87,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          intl.DateFormat('hh:mm a')
-                              .format(msg.timestamp),
+                          intl.DateFormat('hh:mm a').format(msg.timestamp),
                           style: TextStyle(
                             fontSize: 10,
-                            color: isMe
-                                ? Colors.white70
-                                : Colors.grey,
+                            color: isMe ? Colors.white70 : Colors.grey,
                           ),
                         ),
                       ],
@@ -202,28 +186,18 @@ class _TicketDetailsScreenState
                 ),
                 IconButton(
                   onPressed: () {
-                    chatController
-                        .sendMessage(_messageController.text);
+                    chatController.sendMessage(_messageController.text);
                     _messageController.clear();
                   },
-                  icon: const Icon(
-                    Icons.send,
-                    color: Color(0xFF2563EB),
-                  ),
+                  icon: const Icon(Icons.send, color: Color(0xFF2563EB)),
                 ),
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(
-                    Icons.mic,
-                    color: Colors.grey,
-                  ),
+                  icon: const Icon(Icons.mic, color: Colors.grey),
                 ),
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(
-                    Icons.camera_alt,
-                    color: Colors.grey,
-                  ),
+                  icon: const Icon(Icons.camera_alt, color: Colors.grey),
                 ),
               ],
             ),

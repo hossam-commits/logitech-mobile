@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../accident_provider.dart';
@@ -11,8 +11,7 @@ class AccidentWizardScreen extends ConsumerStatefulWidget {
       _AccidentWizardScreenState();
 }
 
-class _AccidentWizardScreenState
-    extends ConsumerState<AccidentWizardScreen> {
+class _AccidentWizardScreenState extends ConsumerState<AccidentWizardScreen> {
   int _step = 0;
   final _plateController = TextEditingController();
   final _phoneController = TextEditingController();
@@ -30,10 +29,7 @@ class _AccidentWizardScreenState
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'إبلاغ عن حادث',
-          style: TextStyle(color: Colors.red),
-        ),
+        title: const Text('إبلاغ عن حادث', style: TextStyle(color: Colors.red)),
       ),
       body: Stepper(
         type: StepperType.horizontal,
@@ -48,8 +44,7 @@ class _AccidentWizardScreenState
             return;
           }
           if (_step == 2 && !form.isStep3Valid) {
-            _showError(
-                'يجب تصوير المركبة (4 صور) والموقع');
+            _showError('يجب تصوير المركبة (4 صور) والموقع');
             return;
           }
           if (_step == 3 && !form.isStep4Valid) {
@@ -67,13 +62,8 @@ class _AccidentWizardScreenState
                 context: context,
                 builder: (c) => const AlertDialog(
                   title: Text('تم الرفع'),
-                  content: Text(
-                      'تم تسجيل الحادث وإبلاغ المشرف. سلامتك!'),
-                  icon: Icon(
-                    Icons.check_circle,
-                    color: Colors.green,
-                    size: 50,
-                  ),
+                  content: Text('تم تسجيل الحادث وإبلاغ المشرف. سلامتك!'),
+                  icon: Icon(Icons.check_circle, color: Colors.green, size: 50),
                 ),
               );
             }
@@ -89,16 +79,10 @@ class _AccidentWizardScreenState
             title: const Text('الموقع'),
             content: Column(
               children: [
-                const Icon(
-                  Icons.location_on,
-                  size: 40,
-                  color: Colors.red,
-                ),
+                const Icon(Icons.location_on, size: 40, color: Colors.red),
                 Text(
                   form.location ?? 'جاري تحديد الموقع...',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
                 const Text('نوع الحادث'),
@@ -111,12 +95,11 @@ class _AccidentWizardScreenState
                             t == 'collision'
                                 ? 'تصادم'
                                 : t == 'fire'
-                                    ? 'حريق'
-                                    : 'آخر',
+                                ? 'حريق'
+                                : 'آخر',
                           ),
                           selected: form.accidentType == t,
-                          onSelected: (b) =>
-                              controller.setAccidentType(t),
+                          onSelected: (b) => controller.setAccidentType(t),
                         ),
                       )
                       .toList(),
@@ -124,9 +107,7 @@ class _AccidentWizardScreenState
               ],
             ),
             isActive: _step >= 0,
-            state: form.isStep1Valid
-                ? StepState.complete
-                : StepState.editing,
+            state: form.isStep1Valid ? StepState.complete : StepState.editing,
           ),
           Step(
             title: const Text('الطرف الآخر'),
@@ -135,38 +116,27 @@ class _AccidentWizardScreenState
                 SwitchListTile(
                   title: const Text('يوجد طرف آخر؟'),
                   value: form.hasOtherParty,
-                  onChanged: (v) =>
-                      controller.setHasOtherParty(v),
+                  onChanged: (v) => controller.setHasOtherParty(v),
                 ),
                 if (form.hasOtherParty) ...[
                   TextField(
                     controller: _plateController,
-                    decoration: const InputDecoration(
-                      labelText: 'رقم اللوحة',
-                    ),
-                    onChanged: (v) => controller.setOtherPartyInfo(
-                      v,
-                      _phoneController.text,
-                    ),
+                    decoration: const InputDecoration(labelText: 'رقم اللوحة'),
+                    onChanged: (v) =>
+                        controller.setOtherPartyInfo(v, _phoneController.text),
                   ),
                   const SizedBox(height: 8),
                   TextField(
                     controller: _phoneController,
-                    decoration: const InputDecoration(
-                      labelText: 'رقم الجوال',
-                    ),
-                    onChanged: (v) => controller.setOtherPartyInfo(
-                      _plateController.text,
-                      v,
-                    ),
+                    decoration: const InputDecoration(labelText: 'رقم الجوال'),
+                    onChanged: (v) =>
+                        controller.setOtherPartyInfo(_plateController.text, v),
                   ),
                 ],
               ],
             ),
             isActive: _step >= 1,
-            state: form.isStep2Valid
-                ? StepState.complete
-                : StepState.editing,
+            state: form.isStep2Valid ? StepState.complete : StepState.editing,
           ),
           Step(
             title: const Text('الصور'),
@@ -175,48 +145,35 @@ class _AccidentWizardScreenState
                 OutlinedButton.icon(
                   onPressed: () => controller.addVehiclePhoto(),
                   icon: const Icon(Icons.camera_alt),
-                  label: Text(
-                    'صور مركبتك (\/4)',
-                  ),
+                  label: Text('صور مركبتك (\/4)'),
                 ),
                 const SizedBox(height: 8),
                 OutlinedButton.icon(
                   onPressed: () => controller.addScenePhoto(),
                   icon: const Icon(Icons.add_a_photo),
-                  label: Text(
-                    'صور الحادث (\)',
-                  ),
+                  label: Text('صور الحادث (\)'),
                 ),
                 const Text(
                   'يجب استخدام الكاميرا فقط',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 10,
-                  ),
+                  style: TextStyle(color: Colors.red, fontSize: 10),
                 ),
               ],
             ),
             isActive: _step >= 2,
-            state: form.isStep3Valid
-                ? StepState.complete
-                : StepState.editing,
+            state: form.isStep3Valid ? StepState.complete : StepState.editing,
           ),
           Step(
             title: const Text('التقرير'),
             content: Column(
               children: [
                 Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: ['najm', 'muroor']
                       .map(
                         (t) => ChoiceChip(
-                          label: Text(
-                            t == 'najm' ? 'نجم' : 'المرور',
-                          ),
+                          label: Text(t == 'najm' ? 'نجم' : 'المرور'),
                           selected: form.reportType == t,
-                          onSelected: (b) =>
-                              controller.setReportType(t),
+                          onSelected: (b) => controller.setReportType(t),
                         ),
                       )
                       .toList(),
@@ -233,8 +190,7 @@ class _AccidentWizardScreenState
                     ),
                     child: form.reportDoc == null
                         ? const Column(
-                            mainAxisAlignment:
-                                MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.upload_file),
                               Text('رفع التقرير (PDF/Image)'),
@@ -252,9 +208,7 @@ class _AccidentWizardScreenState
               ],
             ),
             isActive: _step >= 3,
-            state: form.isStep4Valid
-                ? StepState.complete
-                : StepState.editing,
+            state: form.isStep4Valid ? StepState.complete : StepState.editing,
           ),
           Step(
             title: const Text('تأكيد'),
@@ -270,11 +224,8 @@ class _AccidentWizardScreenState
   }
 
   void _showError(String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(msg),
-        backgroundColor: Colors.red,
-      ),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(msg), backgroundColor: Colors.red));
   }
 }

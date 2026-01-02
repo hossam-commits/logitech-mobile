@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logitech_mobile/features/dashboard/presentation/screens/main_dashboard.dart';
@@ -33,7 +33,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       // ط¹ط±ط¶ ط±ط³ط§ظ„ط© ط¨ط³ظٹط·ط© â€” ظ„ط§ط­ظ‚ط§ظ‹ ط§ط³طھط¨ط¯ظ„ظ‡ط§ ط¨ظ†ط¸ط§ظ… ط¥ط´ط¹ط§ط±ط§طھ ظ…ظˆط­ط¯ ط£ظˆ snackbar ظ…ط®طµطµ
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('ط§ظ„ط±ط¬ط§ط، ط¥ط¯ط®ط§ظ„ ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ ظˆظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±')),
+        const SnackBar(
+          content: Text(
+            'ط§ظ„ط±ط¬ط§ط، ط¥ط¯ط®ط§ظ„ ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ ظˆظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±',
+          ),
+        ),
       );
       return;
     }
@@ -43,16 +47,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     try {
       final authRepo = ref.read(authRepositoryProvider);
       await authRepo.signIn(email, password);
-      
+
       AppLogger.i('User $email logged in successfully');
 
       if (!mounted) return;
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => const MainDashboard(),
-        ),
+        MaterialPageRoute(builder: (context) => const MainDashboard()),
       );
     } catch (e, st) {
       AppLogger.e('Login failed for $email', e, st);
@@ -87,10 +89,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               const Text(
                 'ظ…ط±ط­ط¨ظ‹ط§ ط¨ظƒ ظپظٹ ظ„ظˆط¬ظٹطھظƒ',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 48),
               TextField(

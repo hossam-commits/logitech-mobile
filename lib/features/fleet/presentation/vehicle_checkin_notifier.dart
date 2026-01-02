@@ -1,4 +1,4 @@
-﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../domain/vehicle_checkin_form.dart';
@@ -9,8 +9,7 @@ class VehicleCheckInNotifier extends StateNotifier<VehicleCheckInForm> {
 
   VehicleCheckInNotifier(this._useCase) : super(VehicleCheckInForm());
 
-  void setVehicleId(String? id) =>
-      state = state.copyWith(vehicleId: id);
+  void setVehicleId(String? id) => state = state.copyWith(vehicleId: id);
 
   void setOdometer(String value) {
     final parsed = int.tryParse(value);

@@ -1,4 +1,4 @@
-﻿import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AccidentReportForm {
   final DateTime? timestamp;
@@ -27,9 +27,9 @@ class AccidentReportForm {
 
   bool get isStep1Valid => timestamp != null && location != null;
   bool get isStep2Valid =>
-      !hasOtherParty || (otherPartyPlate != null && otherPartyPlate!.isNotEmpty);
-  bool get isStep3Valid =>
-      vehiclePhotos.length == 4 && scenePhotos.isNotEmpty;
+      !hasOtherParty ||
+      (otherPartyPlate != null && otherPartyPlate!.isNotEmpty);
+  bool get isStep3Valid => vehiclePhotos.length == 4 && scenePhotos.isNotEmpty;
   bool get isStep4Valid => reportDoc != null;
 
   AccidentReportForm copyWith({

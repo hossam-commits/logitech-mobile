@@ -1,4 +1,4 @@
-﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/daily_preparation_form.dart';
 import '../../../core/services/daily_preparation_usecase.dart';
@@ -29,7 +29,8 @@ class PreparationNotifier extends StateNotifier<DailyPreparationForm> {
 
   Future<String?> submit(String odometerInput) async {
     final odo = int.tryParse(odometerInput);
-    if (odo == null) return 'ط§ظ„ط±ط¬ط§ط، ط¥ط¯ط®ط§ظ„ ظ‚ط±ط§ط،ط© ط¹ط¯ط§ط¯ طµط­ظٹط­ط©';
+    if (odo == null)
+      return 'ط§ظ„ط±ط¬ط§ط، ط¥ط¯ط®ط§ظ„ ظ‚ط±ط§ط،ط© ط¹ط¯ط§ط¯ طµط­ظٹط­ط©';
 
     state = state.copyWith(currentOdometer: odo);
 

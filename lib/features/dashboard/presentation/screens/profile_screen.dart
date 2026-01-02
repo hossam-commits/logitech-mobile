@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 import '../../../auth/presentation/screens/login_screen.dart';
 
@@ -9,10 +9,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
-      appBar: AppBar(
-        title: const Text('الملف الشخصي'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('الملف الشخصي'), centerTitle: true),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -20,24 +17,14 @@ class ProfileScreen extends StatelessWidget {
             const CircleAvatar(
               radius: 50,
               backgroundColor: Color(0xFFE2E8F0),
-              child: Icon(
-                Icons.person,
-                size: 60,
-                color: Colors.grey,
-              ),
+              child: Icon(Icons.person, size: 60, color: Colors.grey),
             ),
             const SizedBox(height: 16),
             const Text(
               'سائق 1',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            const Text(
-              'driver1@app.com',
-              style: TextStyle(color: Colors.grey),
-            ),
+            const Text('driver1@app.com', style: TextStyle(color: Colors.grey)),
             const SizedBox(height: 32),
             Row(
               children: [
@@ -60,35 +47,19 @@ class ProfileScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 32),
-            _buildSettingsItem(
-              Icons.language,
-              'اللغة',
-              'العربية',
-            ),
-            _buildSettingsItem(
-              Icons.notifications,
-              'الإشعارات',
-              'مفعلة',
-            ),
-            _buildSettingsItem(
-              Icons.lock,
-              'تغيير كلمة المرور',
-              '',
-            ),
+            _buildSettingsItem(Icons.language, 'اللغة', 'العربية'),
+            _buildSettingsItem(Icons.notifications, 'الإشعارات', 'مفعلة'),
+            _buildSettingsItem(Icons.lock, 'تغيير كلمة المرور', ''),
             const SizedBox(height: 24),
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () => Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(
-                    builder: (c) => const LoginScreen(),
-                  ),
+                  MaterialPageRoute(builder: (c) => const LoginScreen()),
                 ),
                 style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   side: const BorderSide(color: Colors.red),
                   foregroundColor: Colors.red,
                 ),
@@ -113,44 +84,24 @@ class ProfileScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.05),
-            blurRadius: 10,
-          ),
+          BoxShadow(color: Colors.grey.withOpacity(0.05), blurRadius: 10),
         ],
       ),
       child: Column(
         children: [
-          Icon(
-            icon,
-            color: color,
-            size: 28,
-          ),
+          Icon(icon, color: color, size: 28),
           const SizedBox(height: 8),
           Text(
             value,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 12,
-            ),
-          ),
+          Text(title, style: const TextStyle(color: Colors.grey, fontSize: 12)),
         ],
       ),
     );
   }
 
-  Widget _buildSettingsItem(
-    IconData icon,
-    String title,
-    String trailing,
-  ) {
+  Widget _buildSettingsItem(IconData icon, String title, String trailing) {
     return Card(
       elevation: 0,
       margin: const EdgeInsets.only(bottom: 8),
@@ -160,27 +111,17 @@ class ProfileScreen extends StatelessWidget {
         side: BorderSide(color: Colors.grey.shade100),
       ),
       child: ListTile(
-        leading: Icon(
-          icon,
-          color: Colors.grey.shade700,
-        ),
+        leading: Icon(icon, color: Colors.grey.shade700),
         title: Text(title),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               trailing,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
-              ),
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
             ),
             const SizedBox(width: 8),
-            const Icon(
-              Icons.arrow_forward_ios,
-              size: 16,
-              color: Colors.grey,
-            ),
+            const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
           ],
         ),
       ),

@@ -1,4 +1,4 @@
-﻿import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DailyPreparationForm {
   int? currentOdometer;
@@ -7,9 +7,7 @@ class DailyPreparationForm {
   String? city;
 
   bool get isValid =>
-      currentOdometer != null &&
-      selfie != null &&
-      locationCoordinates != null;
+      currentOdometer != null && selfie != null && locationCoordinates != null;
 
   DailyPreparationForm copyWith({
     int? currentOdometer,

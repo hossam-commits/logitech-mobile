@@ -1,4 +1,4 @@
-﻿import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_repository.dart';
 
 class FirebaseAuthRepository implements IAuthRepository {
@@ -6,8 +6,9 @@ class FirebaseAuthRepository implements IAuthRepository {
 
   @override
   Stream<AuthUser?> get authStateChanges => _auth.authStateChanges().map(
-        (user) => user != null ? AuthUser(id: user.uid, email: user.email ?? '') : null,
-      );
+    (user) =>
+        user != null ? AuthUser(id: user.uid, email: user.email ?? '') : null,
+  );
 
   @override
   Future<AuthUser?> signIn(String email, String password) async {
@@ -16,7 +17,9 @@ class FirebaseAuthRepository implements IAuthRepository {
       password: password,
     );
     final user = credential.user;
-    return user != null ? AuthUser(id: user.uid, email: user.email ?? '') : null;
+    return user != null
+        ? AuthUser(id: user.uid, email: user.email ?? '')
+        : null;
   }
 
   @override

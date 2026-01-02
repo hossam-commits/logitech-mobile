@@ -1,4 +1,4 @@
-﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/chat_message.dart';
 import '../../../core/constants/mock_messages.dart';
@@ -11,8 +11,7 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
             id: DateTime.now().toString(),
             text: m['text'],
             sender: m['sender'],
-            timestamp:
-                DateTime.now().subtract(const Duration(minutes: 10)),
+            timestamp: DateTime.now().subtract(const Duration(minutes: 10)),
           ),
         )
         .toList();
