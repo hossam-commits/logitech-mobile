@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../dashboard/presentation/screens/main_dashboard.dart';
-import '../../../../core/services/providers.dart';
-import '../../../../core/logging/app_logger.dart';
+import 'package:logitech_mobile/features/dashboard/presentation/screens/main_dashboard.dart';
+import 'package:logitech_mobile/core/services/providers.dart';
+import 'package:logitech_mobile/core/logging/app_logger.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -25,15 +25,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> _handleLogin() async {
-    // تحقق من إدخالات بسيطة قبل بدء العملية
+    // طھط­ظ‚ظ‚ ظ…ظ† ط¥ط¯ط®ط§ظ„ط§طھ ط¨ط³ظٹط·ط© ظ‚ط¨ظ„ ط¨ط¯ط، ط§ظ„ط¹ظ…ظ„ظٹط©
     final email = _emailController.text.trim();
     final password = _passwordController.text;
 
     if (email.isEmpty || password.isEmpty) {
-      // عرض رسالة بسيطة — لاحقاً استبدلها بنظام إشعارات موحد أو snackbar مخصص
+      // ط¹ط±ط¶ ط±ط³ط§ظ„ط© ط¨ط³ظٹط·ط© â€” ظ„ط§ط­ظ‚ط§ظ‹ ط§ط³طھط¨ط¯ظ„ظ‡ط§ ط¨ظ†ط¸ط§ظ… ط¥ط´ط¹ط§ط±ط§طھ ظ…ظˆط­ط¯ ط£ظˆ snackbar ظ…ط®طµطµ
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('الرجاء إدخال البريد الإلكتروني وكلمة المرور')),
+        const SnackBar(content: Text('ط§ظ„ط±ط¬ط§ط، ط¥ط¯ط®ط§ظ„ ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ ظˆظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±')),
       );
       return;
     }
@@ -58,11 +58,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       AppLogger.e('Login failed for $email', e, st);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('فشل تسجيل الدخول: $e')),
+        SnackBar(content: Text('ظپط´ظ„ طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„: $e')),
       );
     } finally {
-      if (!mounted) return;
-      setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 
@@ -84,7 +85,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               const SizedBox(height: 16),
               const Text(
-                'مرحبًا بك في لوجيتك',
+                'ظ…ط±ط­ط¨ظ‹ط§ ط¨ظƒ ظپظٹ ظ„ظˆط¬ظٹطھظƒ',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
@@ -96,7 +97,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
-                  labelText: 'البريد الإلكتروني',
+                  labelText: 'ط§ظ„ط¨ط±ظٹط¯ ط§ظ„ط¥ظ„ظƒطھط±ظˆظ†ظٹ',
                   prefixIcon: Icon(Icons.email_outlined),
                 ),
               ),
@@ -105,7 +106,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
-                  labelText: 'كلمة المرور',
+                  labelText: 'ظƒظ„ظ…ط© ط§ظ„ظ…ط±ظˆط±',
                   prefixIcon: Icon(Icons.lock_outline),
                 ),
               ),
@@ -125,7 +126,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           strokeWidth: 2,
                         ),
                       )
-                    : const Text('تسجيل الدخول'),
+                    : const Text('طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„'),
               ),
             ],
           ),

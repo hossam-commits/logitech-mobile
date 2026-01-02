@@ -1,4 +1,4 @@
-import 'package:image_picker/image_picker.dart';
+﻿import 'package:image_picker/image_picker.dart';
 
 abstract class IMediaService {
   Future<XFile?> pickImage({required ImageSource source});

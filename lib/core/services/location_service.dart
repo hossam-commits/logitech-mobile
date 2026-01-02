@@ -1,4 +1,4 @@
-abstract class ILocationService {
+﻿abstract class ILocationService {
   Future<String?> getCurrentCoordinates();
 }
 

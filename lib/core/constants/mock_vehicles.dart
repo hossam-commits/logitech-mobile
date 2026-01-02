@@ -1,5 +1,5 @@
-const List<Map<String, dynamic>> MOCK_VEHICLES = [
-  {'id': 'v1', 'plate': 'Ã È Ì 1234', 'type': 'ÓíÇÑÉ ÓíÏÇä', 'status': 'active'},
-  {'id': 'v2', 'plate': 'Í Î Ï 5678', 'type': 'İÇä ÈÖÇÆÚ', 'status': 'maintenance'},
-  {'id': 'v3', 'plate': 'Ñ Ò Ó 9012', 'type': 'ÏÑÇÌÉ äÇÑíÉ', 'status': 'active'},
+ï»¿const List<Map<String, dynamic>> MOCK_VEHICLES = [
+  {'id': 'v1', 'plate': 'Ø£ Ø¨ Ø¬ 1234', 'type': 'Ø³ÙŠØ§Ø±Ø© Ø³ÙŠØ¯Ø§Ù†', 'status': 'active'},
+  {'id': 'v2', 'plate': 'Ø­ Ø® Ø¯ 5678', 'type': 'ÙØ§Ù† Ø¨Ø¶Ø§Ø¦Ø¹', 'status': 'maintenance'},
+  {'id': 'v3', 'plate': 'Ø± Ø² Ø³ 9012', 'type': 'Ø¯Ø±Ø§Ø¬Ø© Ù†Ø§Ø±ÙŠØ©', 'status': 'active'},
 ];

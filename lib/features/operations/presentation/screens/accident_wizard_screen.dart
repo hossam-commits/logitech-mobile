@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../accident_provider.dart';
@@ -31,7 +31,7 @@ class _AccidentWizardScreenState
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'ÅÈáÇÛ Úä ÍÇÏË',
+          'Ø¥Ø¨Ù„Ø§Øº Ø¹Ù† Ø­Ø§Ø¯Ø«',
           style: TextStyle(color: Colors.red),
         ),
       ),
@@ -40,20 +40,20 @@ class _AccidentWizardScreenState
         currentStep: _step,
         onStepContinue: () async {
           if (_step == 0 && !form.isStep1Valid) {
-            _showError('ÇáÑÌÇÁ ÇáÊÃßÏ ãä ÇáãæŞÚ');
+            _showError('Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„ØªØ£ÙƒØ¯ Ù…Ù† Ø§Ù„Ù…ÙˆÙ‚Ø¹');
             return;
           }
           if (_step == 1 && !form.isStep2Valid) {
-            _showError('ÈíÇäÇÊ ÇáØÑİ ÇáÂÎÑ äÇŞÕÉ');
+            _showError('Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø·Ø±Ù Ø§Ù„Ø¢Ø®Ø± Ù†Ø§Ù‚ØµØ©');
             return;
           }
           if (_step == 2 && !form.isStep3Valid) {
             _showError(
-                'íÌÈ ÊÕæíÑ ÇáãÑßÈÉ (4 ÕæÑ) æÇáãæŞÚ');
+                'ÙŠØ¬Ø¨ ØªØµÙˆÙŠØ± Ø§Ù„Ù…Ø±ÙƒØ¨Ø© (4 ØµÙˆØ±) ÙˆØ§Ù„Ù…ÙˆÙ‚Ø¹');
             return;
           }
           if (_step == 3 && !form.isStep4Valid) {
-            _showError('íÌÈ ÑİÚ ÊŞÑíÑ ÑÓãí');
+            _showError('ÙŠØ¬Ø¨ Ø±ÙØ¹ ØªÙ‚Ø±ÙŠØ± Ø±Ø³Ù…ÙŠ');
             return;
           }
 
@@ -66,9 +66,9 @@ class _AccidentWizardScreenState
               showDialog(
                 context: context,
                 builder: (c) => const AlertDialog(
-                  title: Text('Êã ÇáÑİÚ'),
+                  title: Text('ØªÙ… Ø§Ù„Ø±ÙØ¹'),
                   content: Text(
-                      'Êã ÊÓÌíá ÇáÍÇÏË æÅÈáÇÛ ÇáãÔÑİ. ÓáÇãÊß!'),
+                      'ØªÙ… ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø­Ø§Ø¯Ø« ÙˆØ¥Ø¨Ù„Ø§Øº Ø§Ù„Ù…Ø´Ø±Ù. Ø³Ù„Ø§Ù…ØªÙƒ!'),
                   icon: Icon(
                     Icons.check_circle,
                     color: Colors.green,
@@ -86,7 +86,7 @@ class _AccidentWizardScreenState
         },
         steps: [
           Step(
-            title: const Text('ÇáãæŞÚ'),
+            title: const Text('Ø§Ù„Ù…ÙˆÙ‚Ø¹'),
             content: Column(
               children: [
                 const Icon(
@@ -95,13 +95,13 @@ class _AccidentWizardScreenState
                   color: Colors.red,
                 ),
                 Text(
-                  form.location ?? 'ÌÇÑí ÊÍÏíÏ ÇáãæŞÚ...',
+                  form.location ?? 'Ø¬Ø§Ø±ÙŠ ØªØ­Ø¯ÙŠØ¯ Ø§Ù„Ù…ÙˆÙ‚Ø¹...',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 16),
-                const Text('äæÚ ÇáÍÇÏË'),
+                const Text('Ù†ÙˆØ¹ Ø§Ù„Ø­Ø§Ø¯Ø«'),
                 Wrap(
                   spacing: 8,
                   children: ['collision', 'fire', 'other']
@@ -109,10 +109,10 @@ class _AccidentWizardScreenState
                         (t) => ChoiceChip(
                           label: Text(
                             t == 'collision'
-                                ? 'ÊÕÇÏã'
+                                ? 'ØªØµØ§Ø¯Ù…'
                                 : t == 'fire'
-                                    ? 'ÍÑíŞ'
-                                    : 'ÂÎÑ',
+                                    ? 'Ø­Ø±ÙŠÙ‚'
+                                    : 'Ø¢Ø®Ø±',
                           ),
                           selected: form.accidentType == t,
                           onSelected: (b) =>
@@ -129,11 +129,11 @@ class _AccidentWizardScreenState
                 : StepState.editing,
           ),
           Step(
-            title: const Text('ÇáØÑİ ÇáÂÎÑ'),
+            title: const Text('Ø§Ù„Ø·Ø±Ù Ø§Ù„Ø¢Ø®Ø±'),
             content: Column(
               children: [
                 SwitchListTile(
-                  title: const Text('íæÌÏ ØÑİ ÂÎÑ¿'),
+                  title: const Text('ÙŠÙˆØ¬Ø¯ Ø·Ø±Ù Ø¢Ø®Ø±ØŸ'),
                   value: form.hasOtherParty,
                   onChanged: (v) =>
                       controller.setHasOtherParty(v),
@@ -142,7 +142,7 @@ class _AccidentWizardScreenState
                   TextField(
                     controller: _plateController,
                     decoration: const InputDecoration(
-                      labelText: 'ÑŞã ÇááæÍÉ',
+                      labelText: 'Ø±Ù‚Ù… Ø§Ù„Ù„ÙˆØ­Ø©',
                     ),
                     onChanged: (v) => controller.setOtherPartyInfo(
                       v,
@@ -153,7 +153,7 @@ class _AccidentWizardScreenState
                   TextField(
                     controller: _phoneController,
                     decoration: const InputDecoration(
-                      labelText: 'ÑŞã ÇáÌæÇá',
+                      labelText: 'Ø±Ù‚Ù… Ø§Ù„Ø¬ÙˆØ§Ù„',
                     ),
                     onChanged: (v) => controller.setOtherPartyInfo(
                       _plateController.text,
@@ -169,14 +169,14 @@ class _AccidentWizardScreenState
                 : StepState.editing,
           ),
           Step(
-            title: const Text('ÇáÕæÑ'),
+            title: const Text('Ø§Ù„ØµÙˆØ±'),
             content: Column(
               children: [
                 OutlinedButton.icon(
                   onPressed: () => controller.addVehiclePhoto(),
                   icon: const Icon(Icons.camera_alt),
                   label: Text(
-                    'ÕæÑ ãÑßÈÊß (\/4)',
+                    'ØµÙˆØ± Ù…Ø±ÙƒØ¨ØªÙƒ (\/4)',
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -184,11 +184,11 @@ class _AccidentWizardScreenState
                   onPressed: () => controller.addScenePhoto(),
                   icon: const Icon(Icons.add_a_photo),
                   label: Text(
-                    'ÕæÑ ÇáÍÇÏË (\)',
+                    'ØµÙˆØ± Ø§Ù„Ø­Ø§Ø¯Ø« (\)',
                   ),
                 ),
                 const Text(
-                  'íÌÈ ÇÓÊÎÏÇã ÇáßÇãíÑÇ İŞØ',
+                  'ÙŠØ¬Ø¨ Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„ÙƒØ§Ù…ÙŠØ±Ø§ ÙÙ‚Ø·',
                   style: TextStyle(
                     color: Colors.red,
                     fontSize: 10,
@@ -202,7 +202,7 @@ class _AccidentWizardScreenState
                 : StepState.editing,
           ),
           Step(
-            title: const Text('ÇáÊŞÑíÑ'),
+            title: const Text('Ø§Ù„ØªÙ‚Ø±ÙŠØ±'),
             content: Column(
               children: [
                 Row(
@@ -212,7 +212,7 @@ class _AccidentWizardScreenState
                       .map(
                         (t) => ChoiceChip(
                           label: Text(
-                            t == 'najm' ? 'äÌã' : 'ÇáãÑæÑ',
+                            t == 'najm' ? 'Ù†Ø¬Ù…' : 'Ø§Ù„Ù…Ø±ÙˆØ±',
                           ),
                           selected: form.reportType == t,
                           onSelected: (b) =>
@@ -237,7 +237,7 @@ class _AccidentWizardScreenState
                                 MainAxisAlignment.center,
                             children: [
                               Icon(Icons.upload_file),
-                              Text('ÑİÚ ÇáÊŞÑíÑ (PDF/Image)'),
+                              Text('Ø±ÙØ¹ Ø§Ù„ØªÙ‚Ø±ÙŠØ± (PDF/Image)'),
                             ],
                           )
                         : const Center(
@@ -257,9 +257,9 @@ class _AccidentWizardScreenState
                 : StepState.editing,
           ),
           Step(
-            title: const Text('ÊÃßíÏ'),
+            title: const Text('ØªØ£ÙƒÙŠØ¯'),
             content: const Text(
-              'åá ÃäÊ ãÊÃßÏ ãä ÕÍÉ ÇáÈíÇäÇÊ¿ ÓíÊã ÅÑÓÇá ÈáÇÛ İæÑí ááãÔÑİíä.',
+              'Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† ØµØ­Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§ØªØŸ Ø³ÙŠØªÙ… Ø¥Ø±Ø³Ø§Ù„ Ø¨Ù„Ø§Øº ÙÙˆØ±ÙŠ Ù„Ù„Ù…Ø´Ø±ÙÙŠÙ†.',
             ),
             isActive: _step >= 4,
             state: StepState.indexed,

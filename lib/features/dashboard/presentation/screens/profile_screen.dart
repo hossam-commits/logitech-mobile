@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 
 import '../../../auth/presentation/screens/login_screen.dart';
 
@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        title: const Text('Çáãáİ ÇáÔÎÕí'),
+        title: const Text('Ø§Ù„Ù…Ù„Ù Ø§Ù„Ø´Ø®ØµÙŠ'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -28,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              'ÓÇÆŞ 1',
+              'Ø³Ø§Ø¦Ù‚ 1',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: _buildStatCard(
-                    'ÇáÊæÕíáÇÊ',
+                    'Ø§Ù„ØªÙˆØµÙŠÙ„Ø§Øª',
                     '1,250',
                     Icons.local_shipping,
                   ),
@@ -51,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: _buildStatCard(
-                    'ÇáÊŞííã',
+                    'Ø§Ù„ØªÙ‚ÙŠÙŠÙ…',
                     '4.8',
                     Icons.star,
                     color: Colors.amber,
@@ -62,17 +62,17 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 32),
             _buildSettingsItem(
               Icons.language,
-              'ÇááÛÉ',
-              'ÇáÚÑÈíÉ',
+              'Ø§Ù„Ù„ØºØ©',
+              'Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©',
             ),
             _buildSettingsItem(
               Icons.notifications,
-              'ÇáÅÔÚÇÑÇÊ',
-              'ãİÚáÉ',
+              'Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª',
+              'Ù…ÙØ¹Ù„Ø©',
             ),
             _buildSettingsItem(
               Icons.lock,
-              'ÊÛííÑ ßáãÉ ÇáãÑæÑ',
+              'ØªØºÙŠÙŠØ± ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±',
               '',
             ),
             const SizedBox(height: 24),
@@ -92,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
                   side: const BorderSide(color: Colors.red),
                   foregroundColor: Colors.red,
                 ),
-                child: const Text('ÊÓÌíá ÇáÎÑæÌ'),
+                child: const Text('ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬'),
               ),
             ),
           ],

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
-import '../../../core/constants/mock_tickets_data.dart';
+import 'package:logitech_mobile/core/constants/mock_tickets_data.dart';
 import '../../../operations/presentation/screens/accident_wizard_screen.dart';
 import '../../../fleet/presentation/vehicle_checkin_screen.dart';
 import '../../../operations/presentation/screens/daily_preparation_screen.dart';
@@ -29,7 +29,7 @@ class _DashboardHomeContentState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'ãÑÍÈÇğ¡ ÇáÓÇÆŞ',
+              'Ù…Ø±Ø­Ø¨Ø§Ù‹ØŒ Ø§Ù„Ø³Ø§Ø¦Ù‚',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -80,7 +80,7 @@ class _DashboardHomeContentState
               ),
               icon: const Icon(Icons.warning_amber_rounded),
               label: const Text(
-                'ÅÈáÇÛ Úä ÍÇÏË ØÇÑÆ',
+                'Ø¥Ø¨Ù„Ø§Øº Ø¹Ù† Ø­Ø§Ø¯Ø« Ø·Ø§Ø±Ø¦',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -98,7 +98,7 @@ class _DashboardHomeContentState
               children: [
                 _buildActionCard(
                   icon: Icons.directions_car_filled_outlined,
-                  label: 'ÇÓÊáÇã ãÑßÈÉ',
+                  label: 'Ø§Ø³ØªÙ„Ø§Ù… Ù…Ø±ÙƒØ¨Ø©',
                   color: Colors.blue,
                   onTap: () => Navigator.push(
                     context,
@@ -110,7 +110,7 @@ class _DashboardHomeContentState
                 ),
                 _buildActionCard(
                   icon: Icons.assignment_outlined,
-                  label: 'ÇáÊÍÖíÑ Çáíæãí',
+                  label: 'Ø§Ù„ØªØ­Ø¶ÙŠØ± Ø§Ù„ÙŠÙˆÙ…ÙŠ',
                   color: Colors.orange,
                   onTap: () => Navigator.push(
                     context,
@@ -122,7 +122,7 @@ class _DashboardHomeContentState
                 ),
                 _buildActionCard(
                   icon: Icons.confirmation_number_outlined,
-                  label: 'ÊĞßÑÉ ÌÏíÏÉ',
+                  label: 'ØªØ°ÙƒØ±Ø© Ø¬Ø¯ÙŠØ¯Ø©',
                   color: Colors.purple,
                   onTap: () => Navigator.push(
                     context,
@@ -134,7 +134,7 @@ class _DashboardHomeContentState
                 ),
                 _buildActionCard(
                   icon: Icons.history,
-                  label: 'ÓÌáí',
+                  label: 'Ø³Ø¬Ù„ÙŠ',
                   color: Colors.teal,
                   onTap: () {},
                 ),
@@ -152,7 +152,7 @@ class _DashboardHomeContentState
                     CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'ÂÎÑ ÇáÊĞÇßÑ',
+                    'Ø¢Ø®Ø± Ø§Ù„ØªØ°Ø§ÙƒØ±',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -215,7 +215,7 @@ class _DashboardHomeContentState
             MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            _isOnline ? 'ÃäÊ ãÊÕá ÇáÂä' : 'ÃäÊ ÛíÑ ãÊÕá',
+            _isOnline ? 'Ø£Ù†Øª Ù…ØªØµÙ„ Ø§Ù„Ø¢Ù†' : 'Ø£Ù†Øª ØºÙŠØ± Ù…ØªØµÙ„',
             style: const TextStyle(
               color: Colors.white,
               fontSize: 18,
@@ -318,7 +318,7 @@ class _DashboardHomeContentState
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
-            status == 'open' ? 'ãİÊæÍÉ' : 'ãÛáŞÉ',
+            status == 'open' ? 'Ù…ÙØªÙˆØ­Ø©' : 'Ù…ØºÙ„Ù‚Ø©',
             style: TextStyle(
               color: statusColor,
               fontSize: 12,

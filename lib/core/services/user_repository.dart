@@ -1,4 +1,4 @@
-abstract class IUserRepository {
+﻿abstract class IUserRepository {
   Future<int> getLastOdometerReading();
 }
 

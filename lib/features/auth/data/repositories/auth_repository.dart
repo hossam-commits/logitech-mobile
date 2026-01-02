@@ -1,4 +1,4 @@
-class AuthUser {
+﻿class AuthUser {
   final String id;
   final String email;
 

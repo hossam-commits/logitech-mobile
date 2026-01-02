@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -38,7 +38,7 @@ class _TicketDetailsScreenState
                       MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'ÑŞã ÇáÊĞßÑÉ: \',
+                      'Ø±Ù‚Ù… Ø§Ù„ØªØ°ÙƒØ±Ø©: ',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey,
@@ -57,8 +57,8 @@ class _TicketDetailsScreenState
                       ),
                       child: Text(
                         widget.ticket['status'] == 'open'
-                            ? 'ãİÊæÍÉ'
-                            : 'ãÛáŞÉ',
+                            ? 'Ù…ÙØªÙˆØ­Ø©'
+                            : 'Ù…ØºÙ„Ù‚Ø©',
                         style: TextStyle(
                           color:
                               widget.ticket['status'] == 'open'
@@ -195,7 +195,7 @@ class _TicketDetailsScreenState
                   child: TextField(
                     controller: _messageController,
                     decoration: const InputDecoration(
-                      hintText: 'ÇßÊÈ ÑÏß åäÇ...',
+                      hintText: 'Ø§ÙƒØªØ¨ Ø±Ø¯Ùƒ Ù‡Ù†Ø§...',
                       border: InputBorder.none,
                     ),
                   ),

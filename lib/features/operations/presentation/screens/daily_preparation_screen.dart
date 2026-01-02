@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../preparation_provider.dart';
@@ -22,7 +22,7 @@ class _DailyPreparationScreenState
     final controller = ref.read(preparationProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('ÇáÊÍÖíÑ Çáíæãí')),
+      appBar: AppBar(title: const Text('Ø§Ù„ØªØ­Ø¶ÙŠØ± Ø§Ù„ÙŠÙˆÙ…ÙŠ')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -44,12 +44,12 @@ class _DailyPreparationScreenState
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'ÇáãæŞÚ ÇáÍÇáí',
+                    'Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø­Ø§Ù„ÙŠ',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    form.locationCoordinates ?? 'áã íÊã ÇáÊÍÏíÏ',
+                    form.locationCoordinates ?? 'Ù„Ù… ÙŠØªÙ… Ø§Ù„ØªØ­Ø¯ÙŠØ¯',
                     style: const TextStyle(color: Colors.grey),
                   ),
                   if (form.city != null)
@@ -64,7 +64,7 @@ class _DailyPreparationScreenState
                   OutlinedButton.icon(
                     onPressed: () => controller.updateLocation(),
                     icon: const Icon(Icons.my_location),
-                    label: const Text('ÊÍÏíË ÇáãæŞÚ'),
+                    label: const Text('ØªØ­Ø¯ÙŠØ« Ø§Ù„Ù…ÙˆÙ‚Ø¹'),
                   ),
                 ],
               ),
@@ -86,7 +86,7 @@ class _DailyPreparationScreenState
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'ŞÑÇÁÉ ÇáÚÏÇÏ',
+                    'Ù‚Ø±Ø§Ø¡Ø© Ø§Ù„Ø¹Ø¯Ø§Ø¯',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
@@ -94,9 +94,9 @@ class _DailyPreparationScreenState
                     controller: _odometerController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      labelText: 'ÇáŞÑÇÁÉ ÇáÍÇáíÉ',
+                      labelText: 'Ø§Ù„Ù‚Ø±Ø§Ø¡Ø© Ø§Ù„Ø­Ø§Ù„ÙŠØ©',
                       suffixText: 'KM',
-                      hintText: 'ÃßÈÑ ãä 50,000',
+                      hintText: 'Ø£ÙƒØ¨Ø± Ù…Ù† 50,000',
                     ),
                   ),
                 ],
@@ -128,7 +128,7 @@ class _DailyPreparationScreenState
                           ),
                           SizedBox(height: 8),
                           Text(
-                            'ÇáÊŞØ ÕæÑÉ Óíáİí',
+                            'Ø§Ù„ØªÙ‚Ø· ØµÙˆØ±Ø© Ø³ÙŠÙ„ÙÙŠ',
                             style: TextStyle(color: Colors.grey),
                           ),
                         ],
@@ -177,7 +177,7 @@ class _DailyPreparationScreenState
                               .showSnackBar(
                             const SnackBar(
                               content: Text(
-                                  'Êã ÇáÊÍÖíÑ ÈäÌÇÍ¡ íæã ãæİŞ! ??'),
+                                  'ØªÙ… Ø§Ù„ØªØ­Ø¶ÙŠØ± Ø¨Ù†Ø¬Ø§Ø­ØŒ ÙŠÙˆÙ… Ù…ÙˆÙÙ‚! ??'),
                               backgroundColor: Colors.green,
                             ),
                           );
@@ -209,7 +209,7 @@ class _DailyPreparationScreenState
                       ),
                     )
                   : const Text(
-                      'ÈÏÁ ÇáÏæÇã',
+                      'Ø¨Ø¯Ø¡ Ø§Ù„Ø¯ÙˆØ§Ù…',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,

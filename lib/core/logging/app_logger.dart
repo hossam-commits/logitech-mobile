@@ -1,4 +1,4 @@
-import 'package:logger/logger.dart';
+﻿import 'package:logger/logger.dart';
 import '../config/app_config.dart';
 
 class AppLogger {

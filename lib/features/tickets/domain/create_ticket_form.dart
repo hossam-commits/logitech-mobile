@@ -1,4 +1,4 @@
-import 'package:image_picker/image_picker.dart';
+﻿import 'package:image_picker/image_picker.dart';
 
 enum TicketType { maintenance, fuel, carWash, accident, general }
 enum TicketPriority { low, medium, high, urgent }

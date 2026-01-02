@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+ï»¿import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/chat_message.dart';
 import '../../../core/constants/mock_messages.dart';
@@ -31,7 +31,7 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
     Future.delayed(const Duration(seconds: 2), () {
       final reply = ChatMessage(
         id: DateTime.now().toString(),
-        text: 'ÔßÑÇğ¡ ÓäŞæã ÈãÊÇÈÚÉ ÇáÃãÑ.',
+        text: 'Ø´ÙƒØ±Ø§Ù‹ØŒ Ø³Ù†Ù‚ÙˆÙ… Ø¨Ù…ØªØ§Ø¨Ø¹Ø© Ø§Ù„Ø£Ù…Ø±.',
         sender: 'supervisor',
         timestamp: DateTime.now(),
       );

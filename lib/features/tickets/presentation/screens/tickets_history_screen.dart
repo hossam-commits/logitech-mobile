@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 
-import '../../../core/constants/mock_tickets_data.dart';
+import 'package:logitech_mobile/core/constants/mock_tickets_data.dart';
 import 'ticket_details_screen.dart';
 
 class TicketsHistoryScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
             .toList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('ÓÌá ÇáÊĞÇßÑ')),
+      appBar: AppBar(title: const Text('Ø³Ø¬Ù„ Ø§Ù„ØªØ°Ø§ÙƒØ±')),
       body: Column(
         children: [
           SingleChildScrollView(
@@ -31,11 +31,11 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                _buildFilterChip('all', 'Çáßá'),
+                _buildFilterChip('all', 'Ø§Ù„ÙƒÙ„'),
                 const SizedBox(width: 8),
-                _buildFilterChip('open', 'ãİÊæÍÉ'),
+                _buildFilterChip('open', 'Ù…ÙØªÙˆØ­Ø©'),
                 const SizedBox(width: 8),
-                _buildFilterChip('closed', 'ãÛáŞÉ'),
+                _buildFilterChip('closed', 'Ù…ØºÙ„Ù‚Ø©'),
               ],
             ),
           ),
@@ -83,9 +83,9 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    subtitle: Text(
-                      '\ • \',
-                      style: const TextStyle(
+                    subtitle: const Text(
+                      ' â€¢ ',
+                      style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey,
                       ),
@@ -95,8 +95,8 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
                       children: [
                         Text(
                           t['status'] == 'open'
-                              ? 'ãİÊæÍÉ'
-                              : 'ãÛáŞÉ',
+                              ? 'Ù…ÙØªÙˆØ­Ø©'
+                              : 'Ù…ØºÙ„Ù‚Ø©',
                           style: TextStyle(
                             color: t['status'] == 'open'
                                 ? Colors.orange

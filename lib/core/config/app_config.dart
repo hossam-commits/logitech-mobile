@@ -1,4 +1,4 @@
-class AppConfig {
+﻿class AppConfig {
   static const String appTitle = String.fromEnvironment(
     'APP_TITLE',
     defaultValue: 'LogiTech Driver',

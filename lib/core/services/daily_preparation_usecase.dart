@@ -1,4 +1,4 @@
-import 'package:image_picker/image_picker.dart';
+﻿import 'package:image_picker/image_picker.dart';
 
 import 'location_service.dart';
 import 'user_repository.dart';
@@ -18,7 +18,7 @@ class DailyPreparationUseCase {
   Future<String> fetchLocation() async {
     final loc = await locationService.getCurrentCoordinates();
     if (loc == null) {
-      throw Exception('تعذر الحصول على الموقع. الرجاء التأكد من تشغيل GPS');
+      throw Exception('طھط¹ط°ط± ط§ظ„ط­طµظˆظ„ ط¹ظ„ظ‰ ط§ظ„ظ…ظˆظ‚ط¹. ط§ظ„ط±ط¬ط§ط، ط§ظ„طھط£ظƒط¯ ظ…ظ† طھط´ط؛ظٹظ„ GPS');
     }
     return loc;
   }
@@ -29,7 +29,7 @@ class DailyPreparationUseCase {
   Future<bool> validateOdometer(int input) async {
     final last = await userRepository.getLastOdometerReading();
     if (input < last) {
-      throw Exception('قيمة العداد أقل من القراءة الأخيرة');
+      throw Exception('ظ‚ظٹظ…ط© ط§ظ„ط¹ط¯ط§ط¯ ط£ظ‚ظ„ ظ…ظ† ط§ظ„ظ‚ط±ط§ط،ط© ط§ظ„ط£ط®ظٹط±ط©');
     }
     return true;
   }

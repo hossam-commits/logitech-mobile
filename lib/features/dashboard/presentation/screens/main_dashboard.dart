@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 
 import 'dashboard_home_content.dart';
 import '../../../tickets/presentation/screens/tickets_history_screen.dart';
@@ -36,17 +36,17 @@ class _MainDashboardState extends State<MainDashboard> {
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
             selectedIcon: Icon(Icons.home),
-            label: 'ÇáÑÆíÓíÉ',
+            label: 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©',
           ),
           NavigationDestination(
             icon: Icon(Icons.confirmation_number_outlined),
             selectedIcon: Icon(Icons.confirmation_number),
-            label: 'ÇáÊÐÇßÑ',
+            label: 'Ø§Ù„ØªØ°Ø§ÙƒØ±',
           ),
           NavigationDestination(
             icon: Icon(Icons.person_outline),
             selectedIcon: Icon(Icons.person),
-            label: 'ÍÓÇÈí',
+            label: 'Ø­Ø³Ø§Ø¨ÙŠ',
           ),
         ],
       ),

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -25,14 +25,14 @@ class _CreateTicketScreenState
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
-      appBar: AppBar(title: const Text('ÊĞßÑÉ ÌÏíÏÉ')),
+      appBar: AppBar(title: const Text('ØªØ°ÙƒØ±Ø© Ø¬Ø¯ÙŠØ¯Ø©')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'äæÚ ÇáÊĞßÑÉ',
+              'Ù†ÙˆØ¹ Ø§Ù„ØªØ°ÙƒØ±Ø©',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 8),
@@ -45,7 +45,7 @@ class _CreateTicketScreenState
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<TicketType>(
                   value: form.type,
-                  hint: const Text('ÇÎÊÑ äæÚ ÇáÊĞßÑÉ'),
+                  hint: const Text('Ø§Ø®ØªØ± Ù†ÙˆØ¹ Ø§Ù„ØªØ°ÙƒØ±Ø©'),
                   isExpanded: true,
                   items: const [
                     DropdownMenuItem(
@@ -54,7 +54,7 @@ class _CreateTicketScreenState
                         children: [
                           Icon(Icons.build, color: Colors.orange),
                           SizedBox(width: 8),
-                          Text('ÕíÇäÉ'),
+                          Text('ØµÙŠØ§Ù†Ø©'),
                         ],
                       ),
                     ),
@@ -65,7 +65,7 @@ class _CreateTicketScreenState
                           Icon(Icons.local_gas_station,
                               color: Colors.blue),
                           SizedBox(width: 8),
-                          Text('æŞæÏ'),
+                          Text('ÙˆÙ‚ÙˆØ¯'),
                         ],
                       ),
                     ),
@@ -76,7 +76,7 @@ class _CreateTicketScreenState
                           Icon(Icons.local_car_wash,
                               color: Colors.cyan),
                           SizedBox(width: 8),
-                          Text('ÛÓíá'),
+                          Text('ØºØ³ÙŠÙ„'),
                         ],
                       ),
                     ),
@@ -86,7 +86,7 @@ class _CreateTicketScreenState
                         children: [
                           Icon(Icons.warning, color: Colors.red),
                           SizedBox(width: 8),
-                          Text('ÍÇÏË'),
+                          Text('Ø­Ø§Ø¯Ø«'),
                         ],
                       ),
                     ),
@@ -96,7 +96,7 @@ class _CreateTicketScreenState
                         children: [
                           Icon(Icons.info, color: Colors.grey),
                           SizedBox(width: 8),
-                          Text('ÚÇã'),
+                          Text('Ø¹Ø§Ù…'),
                         ],
                       ),
                     ),
@@ -107,7 +107,7 @@ class _CreateTicketScreenState
             ),
             const SizedBox(height: 20),
             const Text(
-              'ÇáÃæáæíÉ',
+              'Ø§Ù„Ø£ÙˆÙ„ÙˆÙŠØ©',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 8),
@@ -117,7 +117,7 @@ class _CreateTicketScreenState
                   controller,
                   form.priority,
                   TicketPriority.low,
-                  'ÚÇÏíÉ',
+                  'Ø¹Ø§Ø¯ÙŠØ©',
                   Colors.green,
                 ),
                 const SizedBox(width: 8),
@@ -125,7 +125,7 @@ class _CreateTicketScreenState
                   controller,
                   form.priority,
                   TicketPriority.medium,
-                  'ãÊæÓØÉ',
+                  'Ù…ØªÙˆØ³Ø·Ø©',
                   Colors.blue,
                 ),
                 const SizedBox(width: 8),
@@ -133,7 +133,7 @@ class _CreateTicketScreenState
                   controller,
                   form.priority,
                   TicketPriority.high,
-                  'ÚÇáíÉ',
+                  'Ø¹Ø§Ù„ÙŠØ©',
                   Colors.orange,
                 ),
                 const SizedBox(width: 8),
@@ -141,21 +141,21 @@ class _CreateTicketScreenState
                   controller,
                   form.priority,
                   TicketPriority.urgent,
-                  'ÚÇÌáÉ',
+                  'Ø¹Ø§Ø¬Ù„Ø©',
                   Colors.red,
                 ),
               ],
             ),
             const SizedBox(height: 20),
             const Text(
-              'ÇáÊİÇÕíá',
+              'Ø§Ù„ØªÙØ§ØµÙŠÙ„',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 8),
             TextField(
               decoration: const InputDecoration(
-                labelText: 'ÚäæÇä ÇáÊĞßÑÉ',
-                hintText: 'ãËÇá: ÚØá İí ÇáİÑÇãá',
+                labelText: 'Ø¹Ù†ÙˆØ§Ù† Ø§Ù„ØªØ°ÙƒØ±Ø©',
+                hintText: 'Ù…Ø«Ø§Ù„: Ø¹Ø·Ù„ ÙÙŠ Ø§Ù„ÙØ±Ø§Ù…Ù„',
               ),
               onChanged: (val) => controller.setTitle(val),
             ),
@@ -163,8 +163,8 @@ class _CreateTicketScreenState
             TextField(
               maxLines: 4,
               decoration: const InputDecoration(
-                labelText: 'ÇáæÕİ ÇáÊİÕíáí',
-                hintText: 'ÇÔÑÍ ÇáãÔßáÉ ÈÇáÊİÕíá...',
+                labelText: 'Ø§Ù„ÙˆØµÙ Ø§Ù„ØªÙØµÙŠÙ„ÙŠ',
+                hintText: 'Ø§Ø´Ø±Ø­ Ø§Ù„Ù…Ø´ÙƒÙ„Ø© Ø¨Ø§Ù„ØªÙØµÙŠÙ„...',
               ),
               onChanged: (val) => controller.setDescription(val),
             ),
@@ -173,12 +173,12 @@ class _CreateTicketScreenState
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'ÇáãÑİŞÇÊ (ÕæÑ)',
+                  'Ø§Ù„Ù…Ø±ÙÙ‚Ø§Øª (ØµÙˆØ±)',
                   style:
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 Text(
-                  '\/10',
+                  '/10',
                   style: const TextStyle(color: Colors.grey),
                 ),
               ],
@@ -210,7 +210,7 @@ class _CreateTicketScreenState
                           children: [
                             Icon(Icons.add_a_photo, color: Colors.blue),
                             Text(
-                              'ÅÖÇİÉ',
+                              'Ø¥Ø¶Ø§ÙØ©',
                               style: TextStyle(color: Colors.blue),
                             ),
                           ],
@@ -266,7 +266,7 @@ class _CreateTicketScreenState
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Êã ÅÑÓÇá ÇáÊĞßÑÉ ÈäÌÇÍ!'),
+                            content: Text('ØªÙ… Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„ØªØ°ÙƒØ±Ø© Ø¨Ù†Ø¬Ø§Ø­!'),
                             backgroundColor: Colors.green,
                           ),
                         );
@@ -274,7 +274,7 @@ class _CreateTicketScreenState
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text(
-                                'íÑÌì ÊÚÈÆÉ ÌãíÚ ÇáÍŞæá ÇáãØáæÈÉ'),
+                                'ÙŠØ±Ø¬Ù‰ ØªØ¹Ø¨Ø¦Ø© Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø­Ù‚ÙˆÙ„ Ø§Ù„Ù…Ø·Ù„ÙˆØ¨Ø©'),
                           ),
                         );
                       }
@@ -294,7 +294,7 @@ class _CreateTicketScreenState
                       ),
                     )
                   : const Text(
-                      'ÅÑÓÇá ÇáÊĞßÑÉ',
+                      'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„ØªØ°ÙƒØ±Ø©',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -353,7 +353,7 @@ class _CreateTicketScreenState
           children: [
             ListTile(
               leading: const Icon(Icons.camera_alt),
-              title: const Text('ÇáÊŞÇØ ÕæÑÉ'),
+              title: const Text('Ø§Ù„ØªÙ‚Ø§Ø· ØµÙˆØ±Ø©'),
               onTap: () {
                 Navigator.pop(context);
                 controller.addPhoto(ImageSource.camera);
@@ -361,7 +361,7 @@ class _CreateTicketScreenState
             ),
             ListTile(
               leading: const Icon(Icons.photo_library),
-              title: const Text('ãä ÇáÇÓÊæÏíæ'),
+              title: const Text('Ù…Ù† Ø§Ù„Ø§Ø³ØªÙˆØ¯ÙŠÙˆ'),
               onTap: () {
                 Navigator.pop(context);
                 controller.addPhoto(ImageSource.gallery);

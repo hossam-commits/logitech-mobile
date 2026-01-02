@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -27,7 +27,7 @@ class LogiTechApp extends StatelessWidget {
     return MaterialApp(
       title: AppConfig.appTitle,
       debugShowCheckedModeBanner: !AppConfig.isProduction,
-      // لاحقاً: وفّر طريقة لتعديل الـ locale عبر Config بدلاً من الحشر هنا.
+      // ظ„ط§ط­ظ‚ط§ظ‹: ظˆظپظ‘ط± ط·ط±ظٹظ‚ط© ظ„طھط¹ط¯ظٹظ„ ط§ظ„ظ€ locale ط¹ط¨ط± Config ط¨ط¯ظ„ط§ظ‹ ظ…ظ† ط§ظ„ط­ط´ط± ظ‡ظ†ط§.
       locale: const Locale('ar', 'SA'),
       builder: (context, child) =>
           Directionality(textDirection: TextDirection.rtl, child: child!),

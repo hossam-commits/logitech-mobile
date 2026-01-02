@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ï»¿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -24,28 +24,28 @@ class _VehicleCheckInScreenState
     final controller = ref.read(vehicleCheckInProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('ÇÓÊáÇã ãÑßÈÉ')),
+      appBar: AppBar(title: const Text('Ø§Ø³ØªÙ„Ø§Ù… Ù…Ø±ÙƒØ¨Ø©')),
       body: Stepper(
         type: StepperType.vertical,
         currentStep: _currentStep,
         onStepContinue: () async {
           if (_currentStep == 0 && formState.vehicleId == null) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('ÇáÑÌÇÁ ÇÎÊíÇÑ ÇáãÑßÈÉ')),
+              const SnackBar(content: Text('Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ø®ØªÙŠØ§Ø± Ø§Ù„Ù…Ø±ÙƒØ¨Ø©')),
             );
             return;
           }
           if (_currentStep == 1 && formState.odometer == null) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                  content: Text('ÇáÑÌÇÁ ÅÏÎÇá ŞÑÇÁÉ ÚÏÇÏ ÕÍíÍÉ')),
+                  content: Text('Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø¥Ø¯Ø®Ø§Ù„ Ù‚Ø±Ø§Ø¡Ø© Ø¹Ø¯Ø§Ø¯ ØµØ­ÙŠØ­Ø©')),
             );
             return;
           }
           if (_currentStep == 2 && formState.photos.containsValue(null)) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                  content: Text('íÌÈ ÇáÊŞÇØ ÌãíÚ ÇáÕæÑ ÇáÜ 4')),
+                  content: Text('ÙŠØ¬Ø¨ Ø§Ù„ØªÙ‚Ø§Ø· Ø¬Ù…ÙŠØ¹ Ø§Ù„ØµÙˆØ± Ø§Ù„Ù€ 4')),
             );
             return;
           }
@@ -58,7 +58,7 @@ class _VehicleCheckInScreenState
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Êã ÇÓÊáÇã ÇáãÑßÈÉ ÈäÌÇÍ ?'),
+                  content: Text('ØªÙ… Ø§Ø³ØªÙ„Ø§Ù… Ø§Ù„Ù…Ø±ÙƒØ¨Ø© Ø¨Ù†Ø¬Ø§Ø­ ?'),
                   backgroundColor: Colors.green,
                 ),
               );
@@ -72,11 +72,11 @@ class _VehicleCheckInScreenState
         },
         steps: [
           Step(
-            title: const Text('ÇÎÊíÇÑ ÇáãÑßÈÉ'),
+            title: const Text('Ø§Ø®ØªÙŠØ§Ø± Ø§Ù„Ù…Ø±ÙƒØ¨Ø©'),
             content: DropdownButtonFormField<String>(
               value: formState.vehicleId,
               decoration: const InputDecoration(
-                labelText: 'ÇÎÊÑ ÇáãÑßÈÉ ãä ÇáÃÓØæá',
+                labelText: 'Ø§Ø®ØªØ± Ø§Ù„Ù…Ø±ÙƒØ¨Ø© Ù…Ù† Ø§Ù„Ø£Ø³Ø·ÙˆÙ„',
               ),
               items: _vehicles
                   .map(
@@ -91,11 +91,11 @@ class _VehicleCheckInScreenState
             isActive: _currentStep >= 0,
           ),
           Step(
-            title: const Text('ŞÑÇÁÉ ÇáÚÏÇÏ'),
+            title: const Text('Ù‚Ø±Ø§Ø¡Ø© Ø§Ù„Ø¹Ø¯Ø§Ø¯'),
             content: TextField(
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                labelText: 'ÇáÚÏÇÏ ÇáÍÇáí (ßã)',
+                labelText: 'Ø§Ù„Ø¹Ø¯Ø§Ø¯ Ø§Ù„Ø­Ø§Ù„ÙŠ (ÙƒÙ…)',
                 suffixText: 'KM',
               ),
               onChanged: (val) => controller.setOdometer(val),
@@ -103,7 +103,7 @@ class _VehicleCheckInScreenState
             isActive: _currentStep >= 1,
           ),
           Step(
-            title: const Text('ÕæÑ ÇáãÑßÈÉ (ßÇãíÑÇ İŞØ)'),
+            title: const Text('ØµÙˆØ± Ø§Ù„Ù…Ø±ÙƒØ¨Ø© (ÙƒØ§Ù…ÙŠØ±Ø§ ÙÙ‚Ø·)'),
             content: Column(
               children: [
                 const SizedBox(height: 8),
@@ -111,9 +111,9 @@ class _VehicleCheckInScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildPhoto(
-                        context, 'ÃãÇã', 'front', formState.photos['front']),
+                        context, 'Ø£Ù…Ø§Ù…', 'front', formState.photos['front']),
                     _buildPhoto(
-                        context, 'Îáİ', 'back', formState.photos['back']),
+                        context, 'Ø®Ù„Ù', 'back', formState.photos['back']),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -121,9 +121,9 @@ class _VehicleCheckInScreenState
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildPhoto(
-                        context, 'íãíä', 'right', formState.photos['right']),
+                        context, 'ÙŠÙ…ÙŠÙ†', 'right', formState.photos['right']),
                     _buildPhoto(
-                        context, 'íÓÇÑ', 'left', formState.photos['left']),
+                        context, 'ÙŠØ³Ø§Ø±', 'left', formState.photos['left']),
                   ],
                 ),
               ],
