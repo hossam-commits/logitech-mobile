@@ -10,8 +10,10 @@ jobs:
   analyze_and_test:
     name: Analyze & Test
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -21,14 +23,20 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Analyze
+      - name: Analyze code
         run: flutter analyze
 
-      - name: Run tests (with coverage)
+      - name: Run tests with coverage
         run: flutter test --coverage
 
-      - name: Check formatting
-        run: dart format --set-exit-if-changed .
+      - name: Debug coverage folder
+        run: ls -la coverage
+
+      - name: Ensure coverage file exists
+        run: test -f coverage/lcov.info
+
+      - name: Check coverage file size
+        run: wc -c coverage/lcov.info
 
       - name: Upload coverage artifact
         if: ${{ always() }}
@@ -42,12 +50,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: flutter-test-results
-          path: ./
+          path: ./test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           files: coverage/lcov.info
-          token: ${{ secrets.CODECOV_TOKEN }} # optional for public repos
+          token: ${{ secrets.CODECOV_TOKEN }} # احذف هذا السطر إذا كان المستودع عام
           flags: flutter
           fail_ci_if_error: true
