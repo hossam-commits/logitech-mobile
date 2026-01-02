@@ -59,3 +59,4 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }} # احذف هذا السطر إذا كان المستودع عام
           flags: flutter
           fail_ci_if_error: true
+
