@@ -248,18 +248,24 @@ class _CreateTicketScreenState extends ConsumerState<CreateTicketScreen> {
                   ? null
                   : () async {
                       setState(() => _isSubmitting = true);
+                      final navigator = Navigator.of(context);
+                      final scaffoldMessenger = ScaffoldMessenger.of(context);
+
                       final success = await controller.submit();
+
+                      if (!mounted) return;
                       setState(() => _isSubmitting = false);
-                      if (success && mounted) {
-                        Navigator.pop(context);
-                        ScaffoldMessenger.of(context).showSnackBar(
+
+                      if (success) {
+                        navigator.pop();
+                        scaffoldMessenger.showSnackBar(
                           const SnackBar(
                             content: Text('تم إرسال التذكرة بنجاح!'),
                             backgroundColor: Colors.green,
                           ),
                         );
-                      } else if (!form.isValid && mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
+                      } else if (!form.isValid) {
+                        scaffoldMessenger.showSnackBar(
                           const SnackBar(
                             content: Text('يرجى تعبئة جميع الحقول المطلوبة'),
                           ),

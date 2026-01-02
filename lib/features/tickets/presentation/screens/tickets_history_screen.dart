@@ -16,8 +16,8 @@ class _TicketsHistoryScreenState extends State<TicketsHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     final filtered = _filter == 'all'
-        ? MOCK_TICKETS_DATA
-        : MOCK_TICKETS_DATA.where((t) => t['status'] == _filter).toList();
+        ? mockTicketsData
+        : mockTicketsData.where((t) => t['status'] == _filter).toList();
 
     return Scaffold(
       appBar: AppBar(title: const Text('سجل التذاكر')),

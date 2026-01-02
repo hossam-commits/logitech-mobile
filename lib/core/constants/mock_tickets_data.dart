@@ -1,4 +1,4 @@
-final List<Map<String, dynamic>> MOCK_TICKETS_DATA = [
+final List<Map<String, dynamic>> mockTicketsData = [
   {
     'id': 'TKT-101',
     'title': 'عطل في الفرامل',

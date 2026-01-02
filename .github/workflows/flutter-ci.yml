@@ -1,61 +1,45 @@
-name: Flutter CI
+name: Flutter CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master, develop, ci/add-flutter-checks ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master, develop, ci/add-flutter-checks ]
 
 jobs:
-  analyze_and_test:
-    name: Analyze & Test
+  quality_checks:
+    name: Quality Checks (Analyze & Test)
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Flutter
+        uses: actions/checkout@v3
+      
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
-
+          flutter-version: '3.10.4' # Using the version specified in the project
+          channel: 'stable'
+          cache: true
+          
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Analyze code
-        run: flutter analyze
-
-      - name: Run tests with coverage
+        
+      # 1. التحليل الثابت (Strict Analysis)
+      - name: Run Flutter Analyze
+        run: flutter analyze --fatal-infos
+        
+      # 2. فحص التنسيق
+      - name: Check Formatting
+        run: dart format --set-exit-if-changed .
+        
+      # 3. الاختبارات
+      - name: Run Tests
         run: flutter test --coverage
-
-      - name: Debug coverage folder
-        run: ls -la coverage
-
-      - name: Ensure coverage file exists
-        run: test -f coverage/lcov.info
-
-      - name: Check coverage file size
-        run: wc -c coverage/lcov.info
-
-      - name: Upload coverage artifact
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: lcov
-          path: coverage/lcov.info
-
-      - name: Upload test results (if any)
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: flutter-test-results
-          path: ./test
-
-      - name: Upload coverage to Codecov
+        
+      # 4. رفع تقرير التغطية (Optional but good)
+      - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
-          files: coverage/lcov.info
-          token: ${{ secrets.CODECOV_TOKEN }} # احذف هذا السطر إذا كان المستودع عام
-          flags: flutter
-          fail_ci_if_error: true
+          file: ./coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false # Don't fail if Codecov is not setup yet

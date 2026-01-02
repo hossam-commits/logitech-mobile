@@ -5,7 +5,7 @@ abstract class IMediaService {
 }
 
 class MediaServiceImpl implements IMediaService {
-  final ImagePicker _picker = ImagePicker();
+  // final ImagePicker _picker = ImagePicker();
 
   @override
   Future<XFile?> pickImage({required ImageSource source}) async {

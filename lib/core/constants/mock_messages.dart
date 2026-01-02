@@ -1,4 +1,4 @@
-final List<Map<String, dynamic>> MOCK_MESSAGES = [
+final List<Map<String, dynamic>> mockMessages = [
   {'sender': 'system', 'text': 'تم استلام طلبك بنجاح', 'time': '10:00 AM'},
   {
     'sender': 'supervisor',

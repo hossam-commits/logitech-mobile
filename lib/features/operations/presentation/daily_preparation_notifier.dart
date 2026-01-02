@@ -13,7 +13,7 @@ class PreparationNotifier extends StateNotifier<DailyPreparationForm> {
       final loc = await _useCase.fetchLocation();
       state = state.copyWith(
         locationCoordinates: loc,
-        city: 'ط؛ظٹط± ظ…ط¹ط±ظˆظپ',
+        city: 'غير معروف',
       );
     } catch (e) {
       // Handle error if needed
@@ -29,16 +29,17 @@ class PreparationNotifier extends StateNotifier<DailyPreparationForm> {
 
   Future<String?> submit(String odometerInput) async {
     final odo = int.tryParse(odometerInput);
-    if (odo == null)
-      return 'ط§ظ„ط±ط¬ط§ط، ط¥ط¯ط®ط§ظ„ ظ‚ط±ط§ط،ط© ط¹ط¯ط§ط¯ طµط­ظٹط­ط©';
+    if (odo == null) {
+      return 'الرجاء إدخال قراءة عداد صحيحة';
+    }
 
     state = state.copyWith(currentOdometer: odo);
 
     if (state.selfie == null) {
-      return 'ط§ظ„ط±ط¬ط§ط، ط§ظ„طھظ‚ط§ط· طµظˆط±ط© ط³ظٹظ„ظپظٹ';
+      return 'الرجاء التقاط صورة سيلفي';
     }
     if (state.locationCoordinates == null) {
-      return 'ط§ظ„ط±ط¬ط§ط، طھظپط¹ظٹظ„ ط§ظ„ظ…ظˆظ‚ط¹';
+      return 'الرجاء تفعيل الموقع';
     }
 
     try {

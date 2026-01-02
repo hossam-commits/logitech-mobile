@@ -44,7 +44,7 @@ class _DashboardHomeContentState extends State<DashboardHomeContent> {
           Switch(
             value: _isOnline,
             onChanged: (val) => setState(() => _isOnline = val),
-            activeColor: Colors.green,
+            activeThumbColor: Colors.green,
           ),
           const SizedBox(width: 16),
         ],
@@ -140,7 +140,7 @@ class _DashboardHomeContentState extends State<DashboardHomeContent> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
-                  ...MOCK_TICKETS_DATA
+                  ...mockTicketsData
                       .take(2)
                       .map(
                         (t) => Column(
@@ -264,7 +264,7 @@ class _DashboardHomeContentState extends State<DashboardHomeContent> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: statusColor.withOpacity(0.1),
+            color: statusColor.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(

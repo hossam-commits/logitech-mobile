@@ -15,7 +15,7 @@ class VehicleCheckInScreen extends ConsumerStatefulWidget {
 
 class _VehicleCheckInScreenState extends ConsumerState<VehicleCheckInScreen> {
   int _currentStep = 0;
-  final List<Map<String, dynamic>> _vehicles = MOCK_VEHICLES;
+  final List<Map<String, dynamic>> _vehicles = mockVehicles;
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +50,15 @@ class _VehicleCheckInScreenState extends ConsumerState<VehicleCheckInScreen> {
           if (_currentStep < 2) {
             setState(() => _currentStep += 1);
           } else {
+            final navigator = Navigator.of(context);
+            final scaffoldMessenger = ScaffoldMessenger.of(context);
             final success = await controller.submit();
-            if (success && mounted) {
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
+            if (!mounted) return;
+            if (success) {
+              navigator.pop();
+              scaffoldMessenger.showSnackBar(
                 const SnackBar(
-                  content: Text('تم استلام المركبة بنجاح ?'),
+                  content: Text('تم استلام المركبة بنجاح 🎉'),
                   backgroundColor: Colors.green,
                 ),
               );
@@ -71,7 +74,7 @@ class _VehicleCheckInScreenState extends ConsumerState<VehicleCheckInScreen> {
           Step(
             title: const Text('اختيار المركبة'),
             content: DropdownButtonFormField<String>(
-              value: formState.vehicleId,
+              initialValue: formState.vehicleId,
               decoration: const InputDecoration(
                 labelText: 'اختر المركبة من الأسطول',
               ),
@@ -79,7 +82,7 @@ class _VehicleCheckInScreenState extends ConsumerState<VehicleCheckInScreen> {
                   .map(
                     (v) => DropdownMenuItem(
                       value: v['id'] as String,
-                      child: Text(' - '),
+                      child: Text('${v['plate']} - ${v['id']}'),
                     ),
                   )
                   .toList(),

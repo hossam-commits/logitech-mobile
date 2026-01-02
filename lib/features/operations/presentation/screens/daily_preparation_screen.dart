@@ -157,29 +157,31 @@ class _DailyPreparationScreenState
                   ? null
                   : () async {
                       setState(() => _isSubmitting = true);
+                      final navigator = Navigator.of(context);
+                      final scaffoldMessenger = ScaffoldMessenger.of(context);
+                      
                       final error = await controller.submit(
                         _odometerController.text,
                       );
+                      
+                      if (!mounted) return;
                       setState(() => _isSubmitting = false);
+                      
                       if (error == null) {
-                        if (mounted) {
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('تم التحضير بنجاح، يوم موفق! ??'),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
-                        }
+                        navigator.pop();
+                        scaffoldMessenger.showSnackBar(
+                          const SnackBar(
+                            content: Text('تم التحضير بنجاح، يوم موفق! 🌟'),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
                       } else {
-                        if (mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(error),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
+                        scaffoldMessenger.showSnackBar(
+                          SnackBar(
+                            content: Text(error),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
                       }
                     },
               style: FilledButton.styleFrom(

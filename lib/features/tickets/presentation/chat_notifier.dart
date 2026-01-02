@@ -5,7 +5,7 @@ import '../../../core/constants/mock_messages.dart';
 
 class ChatNotifier extends StateNotifier<List<ChatMessage>> {
   ChatNotifier() : super([]) {
-    state = MOCK_MESSAGES
+    state = mockMessages
         .map(
           (m) => ChatMessage(
             id: DateTime.now().toString(),

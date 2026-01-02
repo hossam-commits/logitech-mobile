@@ -1,4 +1,4 @@
-const List<Map<String, dynamic>> MOCK_VEHICLES = [
+const mockVehicles = [
   {
     'id': 'v1',
     'plate': 'أ ب ج 1234',

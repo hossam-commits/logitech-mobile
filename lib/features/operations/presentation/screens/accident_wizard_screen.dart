@@ -55,9 +55,12 @@ class _AccidentWizardScreenState extends ConsumerState<AccidentWizardScreen> {
           if (_step < 4) {
             setState(() => _step += 1);
           } else {
+            final navigator = Navigator.of(context);
             final success = await controller.submit();
-            if (success && mounted) {
-              Navigator.pop(context);
+            if (!mounted) return;
+
+            if (success) {
+              if (!context.mounted) return;
               showDialog(
                 context: context,
                 builder: (c) => const AlertDialog(
@@ -65,7 +68,9 @@ class _AccidentWizardScreenState extends ConsumerState<AccidentWizardScreen> {
                   content: Text('تم تسجيل الحادث وإبلاغ المشرف. سلامتك!'),
                   icon: Icon(Icons.check_circle, color: Colors.green, size: 50),
                 ),
-              );
+              ).then((_) {
+                if (mounted) navigator.pop();
+              });
             }
           }
         },
@@ -145,13 +150,13 @@ class _AccidentWizardScreenState extends ConsumerState<AccidentWizardScreen> {
                 OutlinedButton.icon(
                   onPressed: () => controller.addVehiclePhoto(),
                   icon: const Icon(Icons.camera_alt),
-                  label: Text('صور مركبتك (\/4)'),
+                  label: Text('صور مركبتك (/4)'),
                 ),
                 const SizedBox(height: 8),
                 OutlinedButton.icon(
                   onPressed: () => controller.addScenePhoto(),
                   icon: const Icon(Icons.add_a_photo),
-                  label: Text('صور الحادث (\)'),
+                  label: const Text('صور الحادث'),
                 ),
                 const Text(
                   'يجب استخدام الكاميرا فقط',
