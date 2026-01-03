@@ -40,3 +40,24 @@ build/
 
 # VS Code
 .vscode/
+
+# Environment variables
+.env
+.env.local
+.env.production.local
+.env.development.local
+.env.test.local
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+.fvm/
+fvm_config.json
+firebase_debug.log*

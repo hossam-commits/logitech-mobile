@@ -5,9 +5,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:logitech_mobile/main.dart';
+import 'package:logitech_mobile/core/config/app_config.dart';
+import 'package:logitech_mobile/main_common.dart';
 
 void main() {
+  setUpAll(() {
+    AppConfig.initialize(AppEnvironment.dev);
+  });
   testWidgets('App builds', (WidgetTester tester) async {
     // Build the app widget and trigger a frame.
     await tester.pumpWidget(

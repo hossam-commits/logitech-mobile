@@ -11,7 +11,7 @@ class AppLogger {
       printEmojis: true,
       dateTimeFormat: DateTimeFormat.dateAndTime,
     ),
-    level: AppConfig.isProduction ? Level.warning : Level.debug,
+    level: AppConfig.instance.isProduction ? Level.warning : Level.debug,
   );
 
   static void debug(String message, [dynamic error, StackTrace? stackTrace]) {

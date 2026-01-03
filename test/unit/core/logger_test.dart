@@ -1,7 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:logitech_mobile/core/logging/app_logger.dart';
+import 'package:logitech_mobile/core/config/app_config.dart';
 
 void main() {
+  setUpAll(() {
+    AppConfig.initialize(AppEnvironment.dev);
+  });
   group('AppLogger', () {
     test('should execute all logging levels without error', () {
       expect(() => AppLogger.debug('Debug message'), returnsNormally);
