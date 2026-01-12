@@ -458,12 +458,20 @@ lib/
 ## Appendix C: Dependencies
 
 Key dependencies from `pubspec.yaml`:
-- `flutter_riverpod` - State management
-- `firebase_core` - Firebase initialization
-- `firebase_auth` - Authentication
-- `image_picker` - Camera/gallery access
-- `logger` - Logging framework
-- `intl` - Internationalization
+- `flutter_riverpod: ^3.1.0` - State management
+- `firebase_core: ^4.3.0` - Firebase initialization
+- `firebase_auth: ^6.1.3` - Authentication
+- `cloud_firestore: ^6.1.1` - Firestore database
+- `image_picker: ^1.2.1` - Camera/gallery access
+- `logger: ^2.6.2` - Logging framework
+- `intl: ^0.20.2` - Internationalization
+- `cupertino_icons: ^1.0.8` - iOS-style icons
+
+Dev dependencies:
+- `flutter_test` - Testing framework
+- `flutter_lints: ^6.0.0` - Lint rules
+- `mockito: ^5.4.4` - Mocking framework
+- `build_runner: ^2.4.13` - Code generation
 
 ---
 
