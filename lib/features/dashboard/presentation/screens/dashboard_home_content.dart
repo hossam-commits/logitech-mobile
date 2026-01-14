@@ -44,7 +44,7 @@ class _DashboardHomeContentState extends State<DashboardHomeContent> {
           Switch(
             value: _isOnline,
             onChanged: (val) => setState(() => _isOnline = val),
-            thumbColor: MaterialStateProperty.all(Colors.green),
+            thumbColor: WidgetStateProperty.all(Colors.green),
           ),
           const SizedBox(width: 16),
         ],
