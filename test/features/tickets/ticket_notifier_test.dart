@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:logitech_mobile/features/tickets/presentation/ticket_notifier.dart';
 import 'package:logitech_mobile/features/tickets/presentation/ticket_provider.dart';
 import 'package:logitech_mobile/features/tickets/domain/create_ticket_form.dart';
 import 'package:logitech_mobile/core/services/ticket_manager_usecase.dart';
