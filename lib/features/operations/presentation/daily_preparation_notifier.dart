@@ -7,7 +7,7 @@ import 'package:logitech_mobile/features/operations/domain/daily_preparation_for
 class PreparationNotifier extends Notifier<DailyPreparationForm> {
   @override
   DailyPreparationForm build() {
-    return const DailyPreparationForm();
+    return DailyPreparationForm();
   }
 
   DailyPreparationUseCase get _useCase => ref.watch(preparationUseCaseProvider);

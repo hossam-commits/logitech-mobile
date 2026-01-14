@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 enum AppEnvironment { dev, staging, prod }
 
 class AppConfig {
@@ -78,4 +80,3 @@ class AppConfig {
     return true;
   }
 }
-import 'package:flutter/foundation.dart';
