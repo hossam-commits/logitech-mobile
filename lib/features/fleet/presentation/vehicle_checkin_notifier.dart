@@ -1,14 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../domain/vehicle_checkin_form.dart';
-import '../../../core/services/submit_vehicle_checkin_usecase.dart';
-import '../../../core/services/providers.dart';
+import 'package:logitech_mobile/core/services/providers.dart';
+import 'package:logitech_mobile/core/services/submit_vehicle_checkin_usecase.dart';
+import 'package:logitech_mobile/features/fleet/domain/vehicle_checkin_form.dart';
 
 class VehicleCheckInNotifier extends Notifier<VehicleCheckInForm> {
   @override
   VehicleCheckInForm build() {
-    return VehicleCheckInForm();
+    return const VehicleCheckInForm();
   }
 
   SubmitVehicleCheckInUseCase get _useCase => ref.watch(checkInUseCaseProvider);

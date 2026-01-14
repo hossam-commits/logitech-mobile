@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart' as intl;
 
-import '../chat_provider.dart';
+import 'package:logitech_mobile/features/tickets/presentation/chat_provider.dart';
 
 class TicketDetailsScreen extends ConsumerStatefulWidget {
   final Map<String, dynamic> ticket;

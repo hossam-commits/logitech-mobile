@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../domain/accident_report_form.dart';
-import '../../../core/services/accident_reporting_usecase.dart';
-import '../../../core/services/providers.dart';
+import 'package:logitech_mobile/core/services/accident_reporting_usecase.dart';
+import 'package:logitech_mobile/core/services/providers.dart';
+import 'package:logitech_mobile/features/operations/domain/accident_report_form.dart';
 
 class AccidentNotifier extends Notifier<AccidentReportForm> {
   @override
   AccidentReportForm build() {
-    return AccidentReportForm();
+    return const AccidentReportForm();
   }
 
   AccidentReportingUseCase get _useCase => ref.watch(accidentUseCaseProvider);

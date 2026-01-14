@@ -1,14 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'media_service.dart';
-import 'location_service.dart';
-import 'user_repository.dart';
-import 'submit_vehicle_checkin_usecase.dart';
-import 'ticket_manager_usecase.dart';
-import 'daily_preparation_usecase.dart';
-import 'accident_reporting_usecase.dart';
-import '../../features/auth/data/repositories/auth_repository.dart';
-import '../../features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:logitech_mobile/core/services/accident_reporting_usecase.dart';
+import 'package:logitech_mobile/core/services/daily_preparation_usecase.dart';
+import 'package:logitech_mobile/core/services/location_service.dart';
+import 'package:logitech_mobile/core/services/media_service.dart';
+import 'package:logitech_mobile/core/services/submit_vehicle_checkin_usecase.dart';
+import 'package:logitech_mobile/core/services/ticket_manager_usecase.dart';
+import 'package:logitech_mobile/core/services/user_repository.dart';
+import 'package:logitech_mobile/features/auth/data/repositories/auth_repository.dart';
+import 'package:logitech_mobile/features/auth/data/repositories/auth_repository_impl.dart';
 
 final mediaServiceProvider = Provider<IMediaService>(
   (ref) => MediaServiceImpl(),

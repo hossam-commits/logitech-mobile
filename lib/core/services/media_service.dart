@@ -12,7 +12,7 @@ class MediaServiceImpl implements IMediaService {
     try {
       await Future.delayed(const Duration(milliseconds: 500));
       return XFile('mock_path/image.jpg');
-    } catch (e) {
+    } on Exception catch (_) {
       return null;
     }
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:logitech_mobile/core/constants/mock_tickets_data.dart';
-import 'ticket_details_screen.dart';
+import 'package:logitech_mobile/features/tickets/presentation/screens/ticket_details_screen.dart';
 
 class TicketsHistoryScreen extends StatefulWidget {
   const TicketsHistoryScreen({super.key});

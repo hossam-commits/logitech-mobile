@@ -55,7 +55,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         context,
         MaterialPageRoute(builder: (context) => const MainDashboard()),
       );
-    } catch (e, st) {
+    } on Exception catch (e, st) {
       AppLogger.error('Login failed for $email', e, st);
       if (!mounted) return;
       ScaffoldMessenger.of(

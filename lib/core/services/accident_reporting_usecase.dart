@@ -1,7 +1,7 @@
 ﻿import 'package:image_picker/image_picker.dart';
 
-import 'media_service.dart';
-import 'location_service.dart';
+import 'package:logitech_mobile/core/services/location_service.dart';
+import 'package:logitech_mobile/core/services/media_service.dart';
 
 class AccidentReportingUseCase {
   final IMediaService mediaService;

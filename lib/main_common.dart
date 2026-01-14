@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'features/auth/presentation/screens/login_screen.dart';
-import 'core/config/app_config.dart';
-import 'core/logging/app_logger.dart';
-import 'firebase_options.dart';
+import 'package:logitech_mobile/core/config/app_config.dart';
+import 'package:logitech_mobile/core/logging/app_logger.dart';
+import 'package:logitech_mobile/features/auth/presentation/screens/login_screen.dart';
+import 'package:logitech_mobile/firebase_options.dart';
 
 Future<void> mainCommon(AppEnvironment env) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ Future<void> mainCommon(AppEnvironment env) async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     AppLogger.info('Firebase initialized successfully in ${env.name} mode');
-  } catch (e, st) {
+  } on Exception catch (e, st) {
     AppLogger.error('Firebase initialize error', e, st);
     // Firebase initialization failed - app will use fallback/mock services
   }

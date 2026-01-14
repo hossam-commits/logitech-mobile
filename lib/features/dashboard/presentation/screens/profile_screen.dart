@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../auth/presentation/screens/login_screen.dart';
+import 'package:logitech_mobile/features/auth/presentation/screens/login_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
