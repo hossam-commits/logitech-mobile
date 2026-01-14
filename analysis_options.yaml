@@ -38,7 +38,6 @@ linter:
     avoid_private_typedef_functions: false
 
     # --- Firebase Friendly ---
-    avoid_print: true
     avoid_redundant_argument_values: true
 
 analyzer:
