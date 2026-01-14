@@ -8,6 +8,7 @@ import 'package:logitech_mobile/features/tickets/presentation/ticket_provider.da
 import 'package:logitech_mobile/features/tickets/domain/create_ticket_form.dart';
 import 'package:logitech_mobile/core/services/ticket_manager_usecase.dart';
 import 'package:logitech_mobile/core/services/media_service.dart';
+import 'package:logitech_mobile/core/services/providers.dart';
 
 // Mock classes using mockito
 class MockTicketManagerUseCase extends Mock implements TicketManagerUseCase {}

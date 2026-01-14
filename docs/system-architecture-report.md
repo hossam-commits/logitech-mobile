@@ -434,7 +434,6 @@ lib/
     ├── dashboard/
     │   └── presentation/screens/
     ├── tickets/
-    │   ├── data/repositories/
     │   ├── domain/
     │   └── presentation/
     ├── fleet/
@@ -472,6 +471,49 @@ Dev dependencies:
 - `flutter_lints: ^6.0.0` - Lint rules
 - `mockito: ^5.4.4` - Mocking framework
 - `build_runner: ^2.4.13` - Code generation
+
+---
+
+## Appendix D: CI/CD Configuration
+
+### CI Workflow Files
+- `.github/workflows/flutter-ci.yml` - Primary CI pipeline
+- `.github/workflows/flutter_ci.yml` - Alternative CI pipeline
+
+### Pipeline Steps
+1. **Checkout code** - `actions/checkout@v4`
+2. **Setup Flutter** - `subosito/flutter-action@v2` (Flutter 3.22.0)
+3. **Install dependencies** - `flutter pub get`
+4. **Check formatting** - `dart format --set-exit-if-changed .`
+5. **Analyze code** - `flutter analyze --fatal-infos`
+6. **Run tests** - `flutter test --coverage`
+
+### SDK Compatibility
+
+| Component | Version Required | CI Version | Status |
+|-----------|------------------|------------|--------|
+| Flutter | Compatible with SDK ^3.10.4 | 3.22.0 | ✅ |
+| Dart | ^3.10.4 | 3.4+ (via Flutter 3.22.0) | ✅ |
+
+### Build Commands
+
+**Development Build:**
+```bash
+flutter run -t lib/main_dev.dart
+```
+
+**Production Build:**
+```bash
+flutter run -t lib/main_prod.dart --dart-define=USE_MOCK_DATA=false
+```
+
+**Production APK:**
+```bash
+flutter build apk -t lib/main_prod.dart \
+  --dart-define=USE_MOCK_DATA=false \
+  --dart-define=API_KEY=${{ secrets.PROD_API_KEY }} \
+  --dart-define=FIREBASE_PROJECT_ID=${{ secrets.PROD_FIREBASE_PROJECT_ID }}
+```
 
 ---
 
