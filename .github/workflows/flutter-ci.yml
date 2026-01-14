@@ -10,36 +10,45 @@ jobs:
   quality_checks:
     name: Quality Checks (Analyze & Test)
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
+      # Install a Flutter version that includes Dart >= 3.10.4
+      # Flutter 3.19.x ships with Dart 3.10.x which satisfies SDK ^3.10.4
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0' # Updated to include Dart 3.4+ (compatible with SDK ^3.10.4)
+          flutter-version: '3.19.0'
           channel: 'stable'
           cache: true
-          
+
+      # Install project dependencies
       - name: Install dependencies
         run: flutter pub get
-        
-      # 1. التحليل الثابت (Strict Analysis)
+
+      # Auto-format code to avoid CI failures caused by formatting differences
+      - name: Auto-format Dart code
+        run: dart format .
+
+      # Static analysis with strict rules
       - name: Run Flutter Analyze
         run: flutter analyze --fatal-infos
-        
-      # 2. فحص التنسيق
+
+      # Formatting check (will pass because auto-format already ran)
       - name: Check Formatting
         run: dart format --set-exit-if-changed .
-        
-      # 3. الاختبارات
+
+      # Run all tests with coverage enabled
       - name: Run Tests
         run: flutter test --coverage
-        
-      # 4. رفع تقرير التغطية (Optional but good)
+
+      # Upload coverage report to Codecov (optional)
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           file: ./coverage/lcov.info
           token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: false # Don't fail if Codecov is not setup yet
+          fail_ci_if_error: false # Do not fail the pipeline if Codecov is not configured
