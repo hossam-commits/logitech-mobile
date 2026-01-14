@@ -46,7 +46,6 @@ class AppConfig {
       apiTimeout: const int.fromEnvironment('API_TIMEOUT', defaultValue: 30000),
       firebaseProjectId: const String.fromEnvironment(
         'FIREBASE_PROJECT_ID',
-        defaultValue: '',
       ),
       useMockData: useMockData,
     );
@@ -55,14 +54,16 @@ class AppConfig {
   }
 
   void _logConfig() {
-    print('[AppConfig] Environment: $environment');
-    print('[AppConfig] useMockData: $useMockData');
+    debugPrint('[AppConfig] Environment: $environment');
+    debugPrint('[AppConfig] useMockData: $useMockData');
     if (useMockData) {
-      print(
+      debugPrint(
         '[AppConfig] ⚠️  MOCK MODE ACTIVE - Using mock data for demonstration',
       );
     } else {
-      print('[AppConfig] ✅ PRODUCTION MODE - Using live Firebase services');
+      debugPrint(
+        '[AppConfig] ✅ PRODUCTION MODE - Using live Firebase services',
+      );
     }
   }
 
@@ -77,3 +78,4 @@ class AppConfig {
     return true;
   }
 }
+import 'package:flutter/foundation.dart';

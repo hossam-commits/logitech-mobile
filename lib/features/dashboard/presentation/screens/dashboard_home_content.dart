@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'package:logitech_mobile/core/constants/mock_tickets_data.dart';
-import '../../../operations/presentation/screens/accident_wizard_screen.dart';
-import '../../../fleet/presentation/vehicle_checkin_screen.dart';
-import '../../../operations/presentation/screens/daily_preparation_screen.dart';
-import '../../../tickets/presentation/screens/create_ticket_screen.dart';
-import '../../../tickets/presentation/screens/ticket_details_screen.dart';
+import 'package:logitech_mobile/features/fleet/presentation/vehicle_checkin_screen.dart';
+import 'package:logitech_mobile/features/operations/presentation/screens/accident_wizard_screen.dart';
+import 'package:logitech_mobile/features/operations/presentation/screens/daily_preparation_screen.dart';
+import 'package:logitech_mobile/features/tickets/presentation/screens/create_ticket_screen.dart';
+import 'package:logitech_mobile/features/tickets/presentation/screens/ticket_details_screen.dart';
 
 class DashboardHomeContent extends StatefulWidget {
   const DashboardHomeContent({super.key});
@@ -44,7 +44,7 @@ class _DashboardHomeContentState extends State<DashboardHomeContent> {
           Switch(
             value: _isOnline,
             onChanged: (val) => setState(() => _isOnline = val),
-            activeThumbColor: Colors.green,
+            thumbColor: MaterialStateProperty.all(Colors.green),
           ),
           const SizedBox(width: 16),
         ],

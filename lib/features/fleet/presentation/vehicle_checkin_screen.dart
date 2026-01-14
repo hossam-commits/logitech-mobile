@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../core/constants/mock_vehicles.dart';
-import 'vehicle_checkin_provider.dart';
+import 'package:logitech_mobile/core/constants/mock_vehicles.dart';
+import 'package:logitech_mobile/features/fleet/presentation/vehicle_checkin_provider.dart';
 
 class VehicleCheckInScreen extends ConsumerStatefulWidget {
   const VehicleCheckInScreen({super.key});
@@ -25,7 +25,6 @@ class _VehicleCheckInScreenState extends ConsumerState<VehicleCheckInScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('استلام مركبة')),
       body: Stepper(
-        type: StepperType.vertical,
         currentStep: _currentStep,
         onStepContinue: () async {
           if (_currentStep == 0 && formState.vehicleId == null) {
@@ -74,7 +73,7 @@ class _VehicleCheckInScreenState extends ConsumerState<VehicleCheckInScreen> {
           Step(
             title: const Text('اختيار المركبة'),
             content: DropdownButtonFormField<String>(
-              initialValue: formState.vehicleId,
+              value: formState.vehicleId,
               decoration: const InputDecoration(
                 labelText: 'اختر المركبة من الأسطول',
               ),

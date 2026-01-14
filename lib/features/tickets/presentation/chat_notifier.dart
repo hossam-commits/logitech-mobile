@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../domain/chat_message.dart';
-import '../../../core/constants/mock_messages.dart';
+import 'package:logitech_mobile/core/constants/mock_messages.dart';
+import 'package:logitech_mobile/features/tickets/domain/chat_message.dart';
 
 class ChatNotifier extends Notifier<List<ChatMessage>> {
   bool _mounted = true;

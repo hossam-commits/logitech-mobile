@@ -1,14 +1,9 @@
 import 'package:logger/logger.dart';
-import '../config/app_config.dart';
+import 'package:logitech_mobile/core/config/app_config.dart';
 
 class AppLogger {
   static final Logger _logger = Logger(
     printer: PrettyPrinter(
-      methodCount: 0,
-      errorMethodCount: 8,
-      lineLength: 120,
-      colors: true,
-      printEmojis: true,
       dateTimeFormat: DateTimeFormat.dateAndTime,
     ),
     level: AppConfig.instance.isProduction ? Level.warning : Level.debug,

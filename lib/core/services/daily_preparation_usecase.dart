@@ -1,8 +1,8 @@
 import 'package:image_picker/image_picker.dart';
 
-import 'location_service.dart';
-import 'user_repository.dart';
-import 'media_service.dart';
+import 'package:logitech_mobile/core/services/location_service.dart';
+import 'package:logitech_mobile/core/services/media_service.dart';
+import 'package:logitech_mobile/core/services/user_repository.dart';
 
 class DailyPreparationUseCase {
   final ILocationService locationService;

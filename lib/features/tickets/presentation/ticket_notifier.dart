@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../domain/create_ticket_form.dart';
-import '../../../core/services/ticket_manager_usecase.dart';
-import '../../../core/services/providers.dart';
+import 'package:logitech_mobile/core/services/providers.dart';
+import 'package:logitech_mobile/core/services/ticket_manager_usecase.dart';
+import 'package:logitech_mobile/features/tickets/domain/create_ticket_form.dart';
 
 class TicketNotifier extends Notifier<CreateTicketForm> {
   @override

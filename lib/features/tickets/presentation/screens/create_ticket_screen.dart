@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../domain/create_ticket_form.dart';
-import '../ticket_notifier.dart';
-import '../ticket_provider.dart';
+import 'package:logitech_mobile/features/tickets/domain/create_ticket_form.dart';
+import 'package:logitech_mobile/features/tickets/presentation/ticket_notifier.dart';
+import 'package:logitech_mobile/features/tickets/presentation/ticket_provider.dart';
 
 class CreateTicketScreen extends ConsumerStatefulWidget {
   const CreateTicketScreen({super.key});
@@ -165,14 +165,14 @@ class _CreateTicketScreenState extends ConsumerState<CreateTicketScreen> {
               onChanged: (val) => controller.setDescription(val),
             ),
             const SizedBox(height: 20),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'المرفقات (صور)',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
-                Text('/10', style: const TextStyle(color: Colors.grey)),
+                Text('/10', style: TextStyle(color: Colors.grey)),
               ],
             ),
             const SizedBox(height: 8),
@@ -193,7 +193,6 @@ class _CreateTicketScreenState extends ConsumerState<CreateTicketScreen> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.grey.shade300,
-                            style: BorderStyle.solid,
                           ),
                         ),
                         child: const Column(

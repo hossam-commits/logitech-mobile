@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../preparation_provider.dart';
+import 'package:logitech_mobile/features/operations/presentation/preparation_provider.dart';
 
 class DailyPreparationScreen extends ConsumerStatefulWidget {
   const DailyPreparationScreen({super.key});

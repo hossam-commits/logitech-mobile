@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'dashboard_home_content.dart';
-import '../../../tickets/presentation/screens/tickets_history_screen.dart';
-import 'profile_screen.dart';
+import 'package:logitech_mobile/features/dashboard/presentation/screens/dashboard_home_content.dart';
+import 'package:logitech_mobile/features/dashboard/presentation/screens/profile_screen.dart';
+import 'package:logitech_mobile/features/tickets/presentation/screens/tickets_history_screen.dart';
 
 class MainDashboard extends StatefulWidget {
   const MainDashboard({super.key});

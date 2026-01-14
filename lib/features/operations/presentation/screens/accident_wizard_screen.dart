@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../accident_provider.dart';
+import 'package:logitech_mobile/features/operations/presentation/accident_provider.dart';
 
 class AccidentWizardScreen extends ConsumerStatefulWidget {
   const AccidentWizardScreen({super.key});
@@ -150,7 +150,7 @@ class _AccidentWizardScreenState extends ConsumerState<AccidentWizardScreen> {
                 OutlinedButton.icon(
                   onPressed: () => controller.addVehiclePhoto(),
                   icon: const Icon(Icons.camera_alt),
-                  label: Text('صور مركبتك (/4)'),
+                  label: const Text('صور مركبتك (/4)'),
                 ),
                 const SizedBox(height: 8),
                 OutlinedButton.icon(
@@ -221,7 +221,6 @@ class _AccidentWizardScreenState extends ConsumerState<AccidentWizardScreen> {
               'هل أنت متأكد من صحة البيانات؟ سيتم إرسال بلاغ فوري للمشرفين.',
             ),
             isActive: _step >= 4,
-            state: StepState.indexed,
           ),
         ],
       ),

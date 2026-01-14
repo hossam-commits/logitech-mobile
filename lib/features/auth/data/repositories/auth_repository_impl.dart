@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'auth_repository.dart';
+import 'package:logitech_mobile/features/auth/data/repositories/auth_repository.dart';
 
 class FirebaseAuthRepository implements IAuthRepository {
   final FirebaseAuth _auth;

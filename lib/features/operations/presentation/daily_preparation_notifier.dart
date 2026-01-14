@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../domain/daily_preparation_form.dart';
-import '../../../core/services/daily_preparation_usecase.dart';
-import '../../../core/services/providers.dart';
+import 'package:logitech_mobile/core/services/daily_preparation_usecase.dart';
+import 'package:logitech_mobile/core/services/providers.dart';
+import 'package:logitech_mobile/features/operations/domain/daily_preparation_form.dart';
 
 class PreparationNotifier extends Notifier<DailyPreparationForm> {
   @override
   DailyPreparationForm build() {
-    return DailyPreparationForm();
+    return const DailyPreparationForm();
   }
 
   DailyPreparationUseCase get _useCase => ref.watch(preparationUseCaseProvider);
@@ -16,7 +16,7 @@ class PreparationNotifier extends Notifier<DailyPreparationForm> {
     try {
       final loc = await _useCase.fetchLocation();
       state = state.copyWith(locationCoordinates: loc, city: 'غير معروف');
-    } catch (e) {
+    } on Exception catch (_) {
       // Handle error if needed
     }
   }
@@ -47,7 +47,7 @@ class PreparationNotifier extends Notifier<DailyPreparationForm> {
       await _useCase.validateOdometer(odo);
       await Future.delayed(const Duration(seconds: 1));
       return null;
-    } catch (e) {
+    } on Exception catch (e) {
       return e.toString().replaceAll('Exception: ', '');
     }
   }
