@@ -17,13 +17,19 @@ jobs:
         uses: actions/checkout@v3
 
       # Install a Flutter version that includes Dart >= 3.10.4
-      # Flutter 3.19.x ships with Dart 3.10.x which satisfies SDK ^3.10.4
+      # Disable cache to avoid reusing old Flutter versions
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.19.0'
           channel: 'stable'
-          cache: true
+          cache: false
+
+      # Print versions to verify correct Flutter & Dart versions
+      - name: Print Flutter & Dart versions
+        run: |
+          flutter --version
+          dart --version
 
       # Install project dependencies
       - name: Install dependencies
