@@ -6,5 +6,5 @@ import '../../../core/services/providers.dart';
 
 final vehicleCheckInProvider =
     NotifierProvider<VehicleCheckInNotifier, VehicleCheckInForm>(
-  VehicleCheckInNotifier.new,
-);
+      VehicleCheckInNotifier.new,
+    );

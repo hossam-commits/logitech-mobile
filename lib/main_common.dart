@@ -17,9 +17,7 @@ Future<void> mainCommon(AppEnvironment env) async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    AppLogger.info(
-      'Firebase initialized successfully in ${env.name} mode',
-    );
+    AppLogger.info('Firebase initialized successfully in ${env.name} mode');
   } catch (e, st) {
     AppLogger.error('Firebase initialize error', e, st);
     // Firebase initialization failed - app will use fallback/mock services

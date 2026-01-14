@@ -1,4 +1,4 @@
-﻿import 'package:logger/logger.dart';
+import 'package:logger/logger.dart';
 import '../config/app_config.dart';
 
 class AppLogger {
@@ -39,20 +39,28 @@ class AppLogger {
   }
 
   static void logApiResponse(int statusCode, String url, {int? duration}) {
-    _logger.i('✅ [API Response] $statusCode $url${duration != null ? ' (${duration}ms)' : ''}');
+    _logger.i(
+      '✅ [API Response] $statusCode $url${duration != null ? ' (${duration}ms)' : ''}',
+    );
   }
 
   static void logUserAction(String action, {Map<String, dynamic>? metadata}) {
-    _logger.i('👤 [User Action] $action ${metadata != null ? '- $metadata' : ''}');
+    _logger.i(
+      '👤 [User Action] $action ${metadata != null ? '- $metadata' : ''}',
+    );
   }
 
   // Backward compatibility aliases
   @Deprecated('Use debug')
-  static void d(String message, [dynamic error, StackTrace? stackTrace]) => debug(message, error, stackTrace);
+  static void d(String message, [dynamic error, StackTrace? stackTrace]) =>
+      debug(message, error, stackTrace);
   @Deprecated('Use info')
-  static void i(String message, [dynamic error, StackTrace? stackTrace]) => info(message, error, stackTrace);
+  static void i(String message, [dynamic error, StackTrace? stackTrace]) =>
+      info(message, error, stackTrace);
   @Deprecated('Use warning')
-  static void w(String message, [dynamic error, StackTrace? stackTrace]) => warning(message, error, stackTrace);
+  static void w(String message, [dynamic error, StackTrace? stackTrace]) =>
+      warning(message, error, stackTrace);
   @Deprecated('Use error')
-  static void e(String message, [dynamic error, StackTrace? stackTrace]) => error(message, error, stackTrace);
+  static void e(String message, [dynamic error, StackTrace? stackTrace]) =>
+      error(message, error, stackTrace);
 }

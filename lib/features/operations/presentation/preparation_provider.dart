@@ -5,5 +5,5 @@ import 'daily_preparation_notifier.dart';
 
 final preparationProvider =
     NotifierProvider<PreparationNotifier, DailyPreparationForm>(
-  PreparationNotifier.new,
-);
+      PreparationNotifier.new,
+    );

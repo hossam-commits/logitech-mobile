@@ -2,7 +2,7 @@
 ///
 /// Refactored repository using dependency injection to switch between
 /// mock and real data sources based on AppConfig.useMockData.
-/// 
+///
 /// This demonstrates the 12-Factor App Principle III: Config
 /// (configuration determines runtime behavior, not code).
 

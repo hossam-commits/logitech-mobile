@@ -20,15 +20,17 @@ void main() {
     test('signIn returns AuthUser on success', () async {
       final mockUser = MockUser();
       final mockCredential = MockUserCredential();
-      
+
       when(mockUser.uid).thenReturn('123');
       when(mockUser.email).thenReturn('test@example.com');
       when(mockCredential.user).thenReturn(mockUser);
-      
-      when(mockAuth.signInWithEmailAndPassword(
-        email: 'test@example.com',
-        password: 'password',
-      )).thenAnswer((_) async => mockCredential);
+
+      when(
+        mockAuth.signInWithEmailAndPassword(
+          email: 'test@example.com',
+          password: 'password',
+        ),
+      ).thenAnswer((_) async => mockCredential);
 
       final result = await repository.signIn('test@example.com', 'password');
 
@@ -38,9 +40,9 @@ void main() {
 
     test('signOut calls FirebaseAuth.signOut', () async {
       when(mockAuth.signOut()).thenAnswer((_) async => {});
-      
+
       await repository.signOut();
-      
+
       verify(mockAuth.signOut()).called(1);
     });
   });

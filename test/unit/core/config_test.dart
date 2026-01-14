@@ -13,13 +13,13 @@ void main() {
       expect(AppConfig.instance.apiTimeout, 30000);
       expect(AppConfig.instance.isValid(), true);
     });
-    
+
     test('should identify environment correctly', () {
       expect(AppConfig.instance.environment, AppEnvironment.dev);
       expect(AppConfig.instance.isDevelopment, true);
       expect(AppConfig.instance.isProduction, false);
     });
-    
+
     test('should validate production requirements', () {
       AppConfig.initialize(AppEnvironment.prod);
       // In production without --dart-define, these will be default/empty
