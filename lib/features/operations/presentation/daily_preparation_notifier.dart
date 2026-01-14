@@ -15,10 +15,7 @@ class PreparationNotifier extends Notifier<DailyPreparationForm> {
   Future<void> updateLocation() async {
     try {
       final loc = await _useCase.fetchLocation();
-      state = state.copyWith(
-        locationCoordinates: loc,
-        city: 'غير معروف',
-      );
+      state = state.copyWith(locationCoordinates: loc, city: 'غير معروف');
     } catch (e) {
       // Handle error if needed
     }

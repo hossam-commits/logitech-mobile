@@ -159,14 +159,14 @@ class _DailyPreparationScreenState
                       setState(() => _isSubmitting = true);
                       final navigator = Navigator.of(context);
                       final scaffoldMessenger = ScaffoldMessenger.of(context);
-                      
+
                       final error = await controller.submit(
                         _odometerController.text,
                       );
-                      
+
                       if (!mounted) return;
                       setState(() => _isSubmitting = false);
-                      
+
                       if (error == null) {
                         navigator.pop();
                         scaffoldMessenger.showSnackBar(

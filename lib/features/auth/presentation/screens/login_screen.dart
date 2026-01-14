@@ -34,9 +34,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text(
-            'الرجاء إدخال البريد الإلكتروني وكلمة المرور',
-          ),
+          content: Text('الرجاء إدخال البريد الإلكتروني وكلمة المرور'),
         ),
       );
       return;
@@ -60,9 +58,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     } catch (e, st) {
       AppLogger.error('Login failed for $email', e, st);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('فشل تسجيل الدخول: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('فشل تسجيل الدخول: $e')));
     } finally {
       if (mounted) {
         setState(() => _isLoading = false);

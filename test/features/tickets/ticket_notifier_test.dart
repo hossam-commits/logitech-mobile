@@ -11,6 +11,7 @@ import 'package:logitech_mobile/core/services/media_service.dart';
 
 // Mock classes using mockito
 class MockTicketManagerUseCase extends Mock implements TicketManagerUseCase {}
+
 class MockMediaService extends Mock implements IMediaService {}
 
 void main() {
@@ -21,9 +22,7 @@ void main() {
     setUp(() {
       mockUseCase = MockTicketManagerUseCase();
       container = ProviderContainer(
-        overrides: [
-          ticketUseCaseProvider.overrideWithValue(mockUseCase),
-        ],
+        overrides: [ticketUseCaseProvider.overrideWithValue(mockUseCase)],
       );
     });
 
@@ -31,75 +30,67 @@ void main() {
       container.dispose();
     });
 
-    test(
-      'Happy Path: initializes with default CreateTicketForm state',
-      () {
-        final state = container.read(createTicketProvider);
-        expect(state.type, isNull);
-        expect(state.priority, TicketPriority.medium);
-        expect(state.title, isNull);
-        expect(state.description, isNull);
-        expect(state.photos, isEmpty);
-        expect(state.isValid, isFalse);
-      },
-    );
+    test('Happy Path: initializes with default CreateTicketForm state', () {
+      final state = container.read(createTicketProvider);
+      expect(state.type, isNull);
+      expect(state.priority, TicketPriority.medium);
+      expect(state.title, isNull);
+      expect(state.description, isNull);
+      expect(state.photos, isEmpty);
+      expect(state.isValid, isFalse);
+    });
 
-    test(
-      'Happy Path: setType updates the form state correctly',
-      () {
-        final notifier = container.read(createTicketProvider.notifier);
-        notifier.setType(TicketType.maintenance);
-        final state = container.read(createTicketProvider);
+    test('Happy Path: setType updates the form state correctly', () {
+      final notifier = container.read(createTicketProvider.notifier);
+      notifier.setType(TicketType.maintenance);
+      final state = container.read(createTicketProvider);
 
-        expect(state.type, TicketType.maintenance);
-      },
-    );
+      expect(state.type, TicketType.maintenance);
+    });
 
-    test(
-      'Happy Path: setPriority transitions state from medium to urgent',
-      () {
-        final notifier = container.read(createTicketProvider.notifier);
-        expect(container.read(createTicketProvider).priority, TicketPriority.medium);
+    test('Happy Path: setPriority transitions state from medium to urgent', () {
+      final notifier = container.read(createTicketProvider.notifier);
+      expect(
+        container.read(createTicketProvider).priority,
+        TicketPriority.medium,
+      );
 
-        notifier.setPriority(TicketPriority.urgent);
-        expect(container.read(createTicketProvider).priority, TicketPriority.urgent);
-      },
-    );
+      notifier.setPriority(TicketPriority.urgent);
+      expect(
+        container.read(createTicketProvider).priority,
+        TicketPriority.urgent,
+      );
+    });
 
-    test(
-      'Happy Path: setTitle and setDescription populate the form',
-      () {
-        final notifier = container.read(createTicketProvider.notifier);
-        notifier.setTitle('عطل في الفرامل');
-        notifier.setDescription('المكابح لا تعمل بشكل صحيح');
+    test('Happy Path: setTitle and setDescription populate the form', () {
+      final notifier = container.read(createTicketProvider.notifier);
+      notifier.setTitle('عطل في الفرامل');
+      notifier.setDescription('المكابح لا تعمل بشكل صحيح');
 
-        final state = container.read(createTicketProvider);
-        expect(state.title, 'عطل في الفرامل');
-        expect(state.description, 'المكابح لا تعمل بشكل صحيح');
-      },
-    );
+      final state = container.read(createTicketProvider);
+      expect(state.title, 'عطل في الفرامل');
+      expect(state.description, 'المكابح لا تعمل بشكل صحيح');
+    });
 
-    test(
-      'Happy Path: form becomes valid when all required fields are set',
-      () {
-        final notifier = container.read(createTicketProvider.notifier);
-        expect(container.read(createTicketProvider).isValid, isFalse);
+    test('Happy Path: form becomes valid when all required fields are set', () {
+      final notifier = container.read(createTicketProvider.notifier);
+      expect(container.read(createTicketProvider).isValid, isFalse);
 
-        notifier.setType(TicketType.accident);
-        notifier.setTitle('حادث');
-        notifier.setDescription('حادث بسيط');
+      notifier.setType(TicketType.accident);
+      notifier.setTitle('حادث');
+      notifier.setDescription('حادث بسيط');
 
-        final state = container.read(createTicketProvider);
-        expect(state.isValid, isTrue);
-      },
-    );
+      final state = container.read(createTicketProvider);
+      expect(state.isValid, isTrue);
+    });
 
     test(
       'Edge Case: addPhoto with empty photos list adds single image',
       () async {
         final mockFile = XFile('/path/to/image.jpg');
-        when(mockUseCase.pickAttachment(ImageSource.gallery))
-            .thenAnswer((_) async => mockFile);
+        when(
+          mockUseCase.pickAttachment(ImageSource.gallery),
+        ).thenAnswer((_) async => mockFile);
 
         final notifier = container.read(createTicketProvider.notifier);
         await notifier.addPhoto(ImageSource.gallery);
@@ -110,47 +101,43 @@ void main() {
       },
     );
 
-    test(
-      'Edge Case: addPhoto respects max 10 photo limit',
-      () async {
-        final notifier = container.read(createTicketProvider.notifier);
-        final mockFile = XFile('/path/to/image.jpg');
-        
-        when(mockUseCase.pickAttachment(ImageSource.gallery))
-            .thenAnswer((_) async => mockFile);
+    test('Edge Case: addPhoto respects max 10 photo limit', () async {
+      final notifier = container.read(createTicketProvider.notifier);
+      final mockFile = XFile('/path/to/image.jpg');
 
-        // Add 10 photos
-        for (int i = 0; i < 10; i++) {
-          await notifier.addPhoto(ImageSource.gallery);
-        }
-        expect(container.read(createTicketProvider).photos, hasLength(10));
+      when(
+        mockUseCase.pickAttachment(ImageSource.gallery),
+      ).thenAnswer((_) async => mockFile);
 
-        // Attempt to add 11th photo
+      // Add 10 photos
+      for (int i = 0; i < 10; i++) {
         await notifier.addPhoto(ImageSource.gallery);
-        expect(container.read(createTicketProvider).photos, hasLength(10));
-      },
-    );
+      }
+      expect(container.read(createTicketProvider).photos, hasLength(10));
 
-    test(
-      'Edge Case: removePhoto at valid index removes the photo',
-      () async {
-        final notifier = container.read(createTicketProvider.notifier);
-        final mockFile = XFile('/path/to/image.jpg');
+      // Attempt to add 11th photo
+      await notifier.addPhoto(ImageSource.gallery);
+      expect(container.read(createTicketProvider).photos, hasLength(10));
+    });
 
-        when(mockUseCase.pickAttachment(ImageSource.gallery))
-            .thenAnswer((_) async => mockFile);
+    test('Edge Case: removePhoto at valid index removes the photo', () async {
+      final notifier = container.read(createTicketProvider.notifier);
+      final mockFile = XFile('/path/to/image.jpg');
 
-        // Add 3 photos
-        await notifier.addPhoto(ImageSource.gallery);
-        await notifier.addPhoto(ImageSource.gallery);
-        await notifier.addPhoto(ImageSource.gallery);
+      when(
+        mockUseCase.pickAttachment(ImageSource.gallery),
+      ).thenAnswer((_) async => mockFile);
 
-        expect(container.read(createTicketProvider).photos, hasLength(3));
+      // Add 3 photos
+      await notifier.addPhoto(ImageSource.gallery);
+      await notifier.addPhoto(ImageSource.gallery);
+      await notifier.addPhoto(ImageSource.gallery);
 
-        notifier.removePhoto(1);
-        expect(container.read(createTicketProvider).photos, hasLength(2));
-      },
-    );
+      expect(container.read(createTicketProvider).photos, hasLength(3));
+
+      notifier.removePhoto(1);
+      expect(container.read(createTicketProvider).photos, hasLength(2));
+    });
 
     test(
       'Error Handling: removePhoto with invalid index does nothing',
@@ -163,60 +150,51 @@ void main() {
       },
     );
 
-    test(
-      'Happy Path: submit resets form when valid',
-      () async {
-        final notifier = container.read(createTicketProvider.notifier);
-        notifier.setType(TicketType.fuel);
-        notifier.setTitle('طلب وقود');
-        notifier.setDescription('احتاج وقود');
+    test('Happy Path: submit resets form when valid', () async {
+      final notifier = container.read(createTicketProvider.notifier);
+      notifier.setType(TicketType.fuel);
+      notifier.setTitle('طلب وقود');
+      notifier.setDescription('احتاج وقود');
 
-        final resultBefore = await notifier.submit();
-        expect(resultBefore, isTrue);
+      final resultBefore = await notifier.submit();
+      expect(resultBefore, isTrue);
 
-        final stateAfter = container.read(createTicketProvider);
-        expect(stateAfter.type, isNull);
-        expect(stateAfter.title, isNull);
-        expect(stateAfter.description, isNull);
-        expect(stateAfter.photos, isEmpty);
-      },
-    );
+      final stateAfter = container.read(createTicketProvider);
+      expect(stateAfter.type, isNull);
+      expect(stateAfter.title, isNull);
+      expect(stateAfter.description, isNull);
+      expect(stateAfter.photos, isEmpty);
+    });
 
-    test(
-      'Error Handling: submit returns false when form is invalid',
-      () async {
-        final notifier = container.read(createTicketProvider.notifier);
-        notifier.setType(TicketType.carWash);
-        // Missing title and description
+    test('Error Handling: submit returns false when form is invalid', () async {
+      final notifier = container.read(createTicketProvider.notifier);
+      notifier.setType(TicketType.carWash);
+      // Missing title and description
 
-        final result = await notifier.submit();
-        expect(result, isFalse);
+      final result = await notifier.submit();
+      expect(result, isFalse);
 
-        // Form state should remain unchanged
-        final state = container.read(createTicketProvider);
-        expect(state.type, TicketType.carWash);
-      },
-    );
+      // Form state should remain unchanged
+      final state = container.read(createTicketProvider);
+      expect(state.type, TicketType.carWash);
+    });
 
-    test(
-      'copyWith creates a new form instance with updated fields',
-      () {
-        final form1 = CreateTicketForm()
-          ..type = TicketType.maintenance
-          ..priority = TicketPriority.high
-          ..title = 'عطل';
+    test('copyWith creates a new form instance with updated fields', () {
+      final form1 = CreateTicketForm()
+        ..type = TicketType.maintenance
+        ..priority = TicketPriority.high
+        ..title = 'عطل';
 
-        final form2 = form1.copyWith(
-          priority: TicketPriority.urgent,
-          title: 'عطل خطير',
-        );
+      final form2 = form1.copyWith(
+        priority: TicketPriority.urgent,
+        title: 'عطل خطير',
+      );
 
-        expect(form1.priority, TicketPriority.high);
-        expect(form2.priority, TicketPriority.urgent);
-        expect(form1.title, 'عطل');
-        expect(form2.title, 'عطل خطير');
-        expect(form2.type, TicketType.maintenance);
-      },
-    );
+      expect(form1.priority, TicketPriority.high);
+      expect(form2.priority, TicketPriority.urgent);
+      expect(form1.title, 'عطل');
+      expect(form2.title, 'عطل خطير');
+      expect(form2.type, TicketType.maintenance);
+    });
   });
 }

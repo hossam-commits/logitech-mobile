@@ -1,4 +1,4 @@
-﻿enum AppEnvironment { dev, staging, prod }
+enum AppEnvironment { dev, staging, prod }
 
 class AppConfig {
   final AppEnvironment environment;
@@ -31,12 +31,23 @@ class AppConfig {
 
     _instance = AppConfig(
       environment: env,
-      appTitle: const String.fromEnvironment('APP_TITLE', defaultValue: 'LogiTech Driver'),
-      apiBaseUrl: const String.fromEnvironment('API_BASE_URL', 
-          defaultValue: 'https://api-dev.logitech.com'),
-      apiKey: const String.fromEnvironment('API_KEY', defaultValue: 'dev_key_12345'),
+      appTitle: const String.fromEnvironment(
+        'APP_TITLE',
+        defaultValue: 'LogiTech Driver',
+      ),
+      apiBaseUrl: const String.fromEnvironment(
+        'API_BASE_URL',
+        defaultValue: 'https://api-dev.logitech.com',
+      ),
+      apiKey: const String.fromEnvironment(
+        'API_KEY',
+        defaultValue: 'dev_key_12345',
+      ),
       apiTimeout: const int.fromEnvironment('API_TIMEOUT', defaultValue: 30000),
-      firebaseProjectId: const String.fromEnvironment('FIREBASE_PROJECT_ID', defaultValue: ''),
+      firebaseProjectId: const String.fromEnvironment(
+        'FIREBASE_PROJECT_ID',
+        defaultValue: '',
+      ),
       useMockData: useMockData,
     );
 
@@ -47,7 +58,9 @@ class AppConfig {
     print('[AppConfig] Environment: $environment');
     print('[AppConfig] useMockData: $useMockData');
     if (useMockData) {
-      print('[AppConfig] ⚠️  MOCK MODE ACTIVE - Using mock data for demonstration');
+      print(
+        '[AppConfig] ⚠️  MOCK MODE ACTIVE - Using mock data for demonstration',
+      );
     } else {
       print('[AppConfig] ✅ PRODUCTION MODE - Using live Firebase services');
     }
@@ -64,4 +77,3 @@ class AppConfig {
     return true;
   }
 }
-
