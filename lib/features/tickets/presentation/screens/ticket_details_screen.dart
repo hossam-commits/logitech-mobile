@@ -35,7 +35,7 @@ class _TicketDetailsScreenState extends ConsumerState<TicketDetailsScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'رقم التذكرة: ',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,

@@ -56,6 +56,6 @@ class AppLogger {
   static void w(String message, [dynamic error, StackTrace? stackTrace]) =>
       warning(message, error, stackTrace);
   @Deprecated('Use error')
-  static void e(String message, [dynamic error, StackTrace? stackTrace]) =>
-      error(message, error, stackTrace);
+  static void e(String message, [dynamic err, StackTrace? stackTrace]) =>
+      error(message, err, stackTrace);
 }

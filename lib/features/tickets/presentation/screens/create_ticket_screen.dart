@@ -168,11 +168,11 @@ class _CreateTicketScreenState extends ConsumerState<CreateTicketScreen> {
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'المرفقات (صور)',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
-                const Text('/10', style: TextStyle(color: Colors.grey)),
+                Text('/10', style: TextStyle(color: Colors.grey)),
               ],
             ),
             const SizedBox(height: 8),
