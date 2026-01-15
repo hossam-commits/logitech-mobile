@@ -37,7 +37,7 @@ class _TicketDetailsScreenState extends ConsumerState<TicketDetailsScreen> {
                   children: [
                     const Text(
                       'رقم التذكرة: ',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey,
                       ),
