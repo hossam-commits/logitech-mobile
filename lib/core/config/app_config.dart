@@ -24,9 +24,12 @@ class AppConfig {
   static late AppConfig _instance;
   static AppConfig get instance => _instance;
 
-  static void initialize(AppEnvironment env) {
-    // Read USE_MOCK_DATA from Dart define (compile-time constant)
-    const useMockData = bool.fromEnvironment(
+  // Remark: Added optional {bool? useMockData} to allow tests to override the environment variable.
+  static void initialize(AppEnvironment env, {bool? useMockData}) {
+    
+    // Logic: If useMockData is passed (e.g. from tests), use it.
+    // Otherwise, read from Dart environment variables.
+    final effectiveMockData = useMockData ?? const bool.fromEnvironment(
       'USE_MOCK_DATA',
       defaultValue: true, // Default to mock mode for safety
     );
@@ -49,7 +52,7 @@ class AppConfig {
       firebaseProjectId: const String.fromEnvironment(
         'FIREBASE_PROJECT_ID',
       ),
-      useMockData: useMockData,
+      useMockData: effectiveMockData,
     );
 
     _instance._logConfig();

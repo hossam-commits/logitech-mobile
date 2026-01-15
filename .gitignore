@@ -61,3 +61,4 @@ Thumbs.db
 .fvm/
 fvm_config.json
 firebase_debug.log*
+flutter/
