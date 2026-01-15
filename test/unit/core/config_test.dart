@@ -21,9 +21,13 @@ void main() {
     });
 
     test('should validate production requirements', () {
-      AppConfig.initialize(AppEnvironment.prod);
-      // In production without --dart-define, these will be default/empty
-      // Our logic says it's invalid if apiKey or firebaseProjectId is empty
+      // Remark: We explicitly pass `useMockData: false` here.
+      // This forces the configuration to rely on real API keys (which are empty/missing in this test context).
+      // Consequently, `isValid()` returns false as expected for a secure production environment.
+      AppConfig.initialize(AppEnvironment.prod, useMockData: false);
+      
+      // Remark: In production without `--dart-define`, these values will be default/empty.
+      // Our business logic dictates that the config is invalid if apiKey or firebaseProjectId is missing.
       expect(AppConfig.instance.isValid(), isFalse);
     });
   });
