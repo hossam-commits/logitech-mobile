@@ -1,28 +1,36 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mockito/mockito.dart';
 
 import 'package:logitech_mobile/features/tickets/presentation/ticket_provider.dart';
 import 'package:logitech_mobile/features/tickets/domain/create_ticket_form.dart';
 import 'package:logitech_mobile/core/services/ticket_manager_usecase.dart';
-import 'package:logitech_mobile/core/services/media_service.dart';
 import 'package:logitech_mobile/core/services/providers.dart';
 
-// Mock classes using mockito
-class MockTicketManagerUseCase extends Mock implements TicketManagerUseCase {}
+// Remark: We create a manual Fake class instead of using Mockito directly.
+// This avoids issues with null safety and Future return types in simple tests.
+class FakeTicketManagerUseCase implements TicketManagerUseCase {
+  XFile? imageToReturn;
 
-class MockMediaService extends Mock implements IMediaService {}
+  @override
+  Future<XFile?> pickAttachment(ImageSource source) async {
+    return imageToReturn;
+  }
+  
+  // Implement other methods if needed (returning dummy values)
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
 
 void main() {
   group('TicketNotifier - Riverpod 3.x State Management', () {
-    late MockTicketManagerUseCase mockUseCase;
+    late FakeTicketManagerUseCase fakeUseCase;
     late ProviderContainer container;
 
     setUp(() {
-      mockUseCase = MockTicketManagerUseCase();
+      fakeUseCase = FakeTicketManagerUseCase();
       container = ProviderContainer(
-        overrides: [ticketUseCaseProvider.overrideWithValue(mockUseCase)],
+        overrides: [ticketUseCaseProvider.overrideWithValue(fakeUseCase)],
       );
     });
 
@@ -87,10 +95,8 @@ void main() {
     test(
       'Edge Case: addPhoto with empty photos list adds single image',
       () async {
-        final mockFile = XFile('/path/to/image.jpg');
-        when(
-          mockUseCase.pickAttachment(ImageSource.gallery),
-        ).thenAnswer((_) async => mockFile);
+        // Remark: Set the fake image directly
+        fakeUseCase.imageToReturn = XFile('/path/to/image.jpg');
 
         final notifier = container.read(createTicketProvider.notifier);
         await notifier.addPhoto(ImageSource.gallery);
@@ -103,11 +109,7 @@ void main() {
 
     test('Edge Case: addPhoto respects max 10 photo limit', () async {
       final notifier = container.read(createTicketProvider.notifier);
-      final mockFile = XFile('/path/to/image.jpg');
-
-      when(
-        mockUseCase.pickAttachment(ImageSource.gallery),
-      ).thenAnswer((_) async => mockFile);
+      fakeUseCase.imageToReturn = XFile('/path/to/image.jpg');
 
       // Add 10 photos
       for (int i = 0; i < 10; i++) {
@@ -122,11 +124,7 @@ void main() {
 
     test('Edge Case: removePhoto at valid index removes the photo', () async {
       final notifier = container.read(createTicketProvider.notifier);
-      final mockFile = XFile('/path/to/image.jpg');
-
-      when(
-        mockUseCase.pickAttachment(ImageSource.gallery),
-      ).thenAnswer((_) async => mockFile);
+      fakeUseCase.imageToReturn = XFile('/path/to/image.jpg');
 
       // Add 3 photos
       await notifier.addPhoto(ImageSource.gallery);
