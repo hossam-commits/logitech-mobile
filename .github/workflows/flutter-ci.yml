@@ -7,54 +7,93 @@ on:
     branches: [ main, master, develop, ci/add-flutter-checks ]
 
 jobs:
+  # -----------------------------------------------------------------
+  # Job 1: Quality Checks (Tests & Analysis)
+  # -----------------------------------------------------------------
   quality_checks:
     name: Quality Checks (Analyze & Test)
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Install a Flutter version that includes Dart >= 3.10.4
-      # Disable cache to avoid reusing old Flutter versions
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.29.0'
           channel: 'stable'
-          cache: false
+          cache: true
 
-      # Print versions to verify correct Flutter & Dart versions
-      - name: Print Flutter & Dart versions
-        run: |
-          flutter --version
-          dart --version
-
-      # Install project dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # Auto-format code to avoid CI failures caused by formatting differences
+      # [NEW STEP] Create .env file for Tests
+      # This is crucial so tests running with AppConfig can find values
+      - name: Create .env file from Secrets
+        run: |
+          echo "API_KEY=${{ secrets.API_KEY }}" > .env
+          echo "FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}" >> .env
+          echo "USE_MOCK_DATA=true" >> .env 
+          # Note: We enforce Mock Data = true for unit tests usually, or use secrets.USE_MOCK_DATA
+
       - name: Auto-format Dart code
         run: dart format .
 
-      # Static analysis with strict rules
       - name: Run Flutter Analyze
         run: flutter analyze --fatal-infos
 
-      # Formatting check (will pass because auto-format already ran)
       - name: Check Formatting
         run: dart format --set-exit-if-changed .
 
-      # Run all tests with coverage enabled
+      # Updated: Pass .env to tests
       - name: Run Tests
-        run: flutter test --coverage
+        run: flutter test --coverage --dart-define-from-file=.env
 
-      # Upload coverage report to Codecov (optional)
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           file: ./coverage/lcov.info
           token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: false # Do not fail the pipeline if Codecov is not configured
+          fail_ci_if_error: false
+
+  # -----------------------------------------------------------------
+  # Job 2: Build APK (Release Version)
+  # -----------------------------------------------------------------
+  build_apk:
+    name: Build Release APK
+    needs: quality_checks # Only run if tests pass
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' # Only build on push (not PRs) to save resources
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.0'
+          channel: 'stable'
+          cache: true
+      
+      - name: Install dependencies
+        run: flutter pub get
+
+      # [NEW STEP] Create .env file for Production Build
+      - name: Create .env file from Secrets
+        run: |
+          echo "API_KEY=${{ secrets.API_KEY }}" > .env
+          echo "FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}" >> .env
+          echo "USE_MOCK_DATA=false" >> .env 
+          # Note: For release build, we force Mock Data to FALSE (Production Mode)
+
+      - name: Build APK (Release)
+        run: flutter build apk --release --dart-define-from-file=.env
+
+      # Upload the APK so you can download it from GitHub Actions page
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: build/app/outputs/flutter-apk/app-release.apk
